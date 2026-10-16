@@ -1,0 +1,851 @@
+/* =============================================================
+   ACBC Studio
+   Hand-written port of the former Webflow site.
+   Breakpoints match the original: 991px / 767px / 479px (max-width).
+   ============================================================= */
+
+/* ---------- Fonts ---------- */
+@font-face {
+  font-family: "Aesthet Nova";
+  src: url("assets/fonts/AesthetNova-Regular.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Adelle Sans";
+  src: url("assets/fonts/AdelleSans-Regular.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Acumin Pro";
+  src: url("assets/fonts/AcuminPro-Regular.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+
+/* ---------- Design tokens ---------- */
+:root {
+  --carbon:       #1a3031;
+  --cotton:       #fef9f2;
+  --linen:        #fff6ea;
+  --beige:        #ede0ce;
+  --urban-olive:  #bfc499;
+  --light-brown:  #e9d8c5;
+  --forest-green: #253c14;
+  --bone:         #f3eedb;
+  --peach:        #fccba1;
+  --butter:       #fefdc9;
+  --stone:        #fef0e3;
+  --deep-orange:  #ec7644;
+  --tangerine:    #ee964c;
+
+  --font-display: "Aesthet Nova", "Times New Roman", serif;
+  --font-label:   "Acumin Pro", Arial, sans-serif;
+  --font-body:    "Adelle Sans", Arial, sans-serif;
+  --font-ui:      Arial, "Helvetica Neue", Helvetica, sans-serif;
+
+  --gutter: 64px;
+  --max-width: 1440px;
+}
+
+/* ---------- Reset / base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { height: 100%; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100%;
+  background-color: #fff;
+  color: #333;
+  font-family: var(--font-ui);
+  font-size: 18px;
+  line-height: 20px;
+}
+
+img { max-width: 100%; vertical-align: middle; display: inline-block; border: 0; }
+
+h1, h2, h3, h4 { margin-bottom: 10px; font-weight: 700; }
+h1 { margin-top: 20px; font-family: var(--font-display); font-size: 60px; line-height: 78px; }
+h2 {
+  margin-top: 20px;
+  font-family: var(--font-label);
+  font-size: 20px;
+  line-height: 28px;
+  text-transform: uppercase;
+}
+h3 { margin-top: 20px; font-family: var(--font-display); font-size: 24px; line-height: 30px; }
+h4 { margin-top: 10px; font-size: 18px; line-height: 24px; }
+
+p { margin-top: 0; margin-bottom: 10px; font-family: var(--font-body); font-size: 16px; }
+
+blockquote { margin: 0 0 10px; padding: 10px 20px; font-size: 18px; line-height: 22px; border-left: 5px solid #e2e2e2; }
+
+strong { font-weight: 700; }
+
+button { margin: 0; font: inherit; color: inherit; border: 0; background: none; cursor: pointer; }
+
+.page {
+  display: flex;
+  flex-flow: column;
+  color: var(--carbon);
+}
+
+/* ---------- Shared type ---------- */
+.h3 {
+  color: var(--carbon);
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 64px;
+}
+.h3--light  { color: var(--cotton); }
+.h3--toggle { margin-top: 0; margin-bottom: 0; }
+
+.h4 {
+  color: var(--carbon);
+  font-family: var(--font-display);
+  font-size: 24px;
+  line-height: 32px;
+}
+.h4--light { color: var(--cotton); }
+
+.paragraph { color: var(--carbon); line-height: 24px; display: block; }
+.paragraph--light  { color: var(--cotton); }
+.paragraph--pill   { color: var(--linen); margin-bottom: 0; }
+.paragraph--footer { text-align: right; }
+
+.text-span { color: var(--carbon); }
+
+/* ---------- Layout primitives ---------- */
+.section {
+  background-color: var(--beige);
+  padding: 16px var(--gutter) 128px;
+}
+
+.section-header {
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* the hairline rule under each section eyebrow.
+   flow-root keeps the h2's 10px bottom margin inside the bar, matching the
+   original (Webflow achieved this incidentally via clearfix pseudo-elements). */
+.eyebrow-bar {
+  display: flow-root;
+  max-width: var(--max-width);
+  margin: 0 auto 128px;
+  box-shadow: inset 0 -1px 0 0 var(--carbon);
+}
+.eyebrow-bar--tight { margin-bottom: 32px; }
+
+.split {
+  display: flex;
+  gap: 64px;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+.split__media { display: flex; width: 33%; }
+.split__content {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 16px;
+  width: 66%;
+}
+
+/* ---------- Buttons ---------- */
+.btn-group {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: #fff;
+  text-transform: uppercase;
+}
+.btn-group--hero {
+  z-index: 4;
+  align-items: flex-end;
+  margin-bottom: 16px;
+  position: relative;
+}
+.btn-group--carbon { margin-top: 64px; }
+
+.btn {
+  background-color: var(--carbon);
+  color: var(--cotton);
+  border-radius: 999px;
+  padding: 8px 24px;
+  text-decoration: none;
+  line-height: inherit;
+  display: inline-block;
+}
+.btn--peach    { background-color: var(--peach); color: var(--carbon); }
+.btn--schedule { min-width: 220px; }
+
+.btn-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background-color: var(--carbon);
+  flex: none;
+}
+.btn-circle--peach  { background-color: var(--peach); }
+.btn-circle--butter { background-color: var(--butter); }
+
+/* =============================================================
+   HERO
+   ============================================================= */
+.hero {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100vw;
+  height: 100svh;
+  min-height: 100vh;
+  padding-bottom: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.site-header {
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 80px;
+  background-color: #fff6ea59;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  position: absolute;
+  inset: 0 0 auto;
+}
+.site-header__logo {
+  display: flex;
+  height: 100%;
+  padding: 24px 0 24px var(--gutter);
+}
+.site-header__logo img { height: 100%; position: relative; }
+.site-header__subscribe { margin-right: var(--gutter); }
+
+.ghost-embed {
+  min-height: 58px;
+  max-width: 440px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("assets/images/bg-orange-ellipse.png");
+  background-position: 0 0;
+  background-size: auto;
+}
+.hero__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+}
+
+.hero__container {
+  width: 50%;
+  position: relative;
+  top: 64px;
+  left: 64px;
+}
+.hero__split {
+  display: flex;
+  justify-content: space-between;
+  place-items: end stretch;
+  gap: 16px;
+  width: 100%;
+  max-width: 100%;
+  margin-left: var(--gutter);
+  margin-right: var(--gutter);
+  padding-bottom: 5%;
+  position: relative;
+}
+.hero__content {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 32px;
+  width: 100%;
+  position: relative;
+}
+.hero__title {
+  margin: 20px 0 10px;
+  max-width: 100%;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 78px;
+}
+.hero__subtitle {
+  margin: 0 0 10px;
+  max-width: 100%;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.hero__decoration {
+  opacity: .7;
+  width: 400%;
+  position: absolute;
+  bottom: 29vw;
+  right: 228vw;
+  transform: scale(6);
+}
+
+/* =============================================================
+   ABOUT
+   ============================================================= */
+.section--about { color: var(--carbon); position: relative; }
+
+/* =============================================================
+   PROCESS
+   ============================================================= */
+.section--process {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  height: auto;
+  background-color: var(--forest-green);
+  padding-top: 0;
+  padding-bottom: 0;
+  position: static;
+}
+
+.process__intro {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 16px;
+  width: 40%;
+  height: 100%;
+  /* margin-right:auto absorbs the leftover flex space and pushes the panel right */
+  margin: auto auto auto 0;
+  /* 16px top + 16px of the bottom padding reproduce the original's spacing
+     (Webflow's clearfix pseudo-elements each picked up the column gap) */
+  padding-top: 16px;
+  padding-bottom: 80px;
+  position: relative;
+  inset: auto 0;
+}
+
+.pill {
+  background-color: #ffffff29;
+  border-radius: 999px;
+  padding: 8px 16px;
+  position: relative;
+  inset: 32px auto auto 0;
+}
+
+.process__panel {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: auto;
+  margin-left: calc(var(--gutter) * -1);
+  margin-right: calc(var(--gutter) * -1);
+  background-image: url("assets/images/bg-yellow-texture.jpg");
+  background-position: 50% 100%;
+  background-size: cover;
+  position: static;
+}
+
+.process-card {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  border: .25px solid var(--cotton);
+  border-radius: 8px;
+  background-color: #00000040;
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  margin-top: 0;
+  margin-bottom: 16px;
+  padding: 32px;
+}
+.process-card__media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 260px;
+}
+.process-card__image { width: 50%; height: 100%; }
+.process-card__body {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  height: auto;
+}
+
+/* =============================================================
+   SLIDER (replaces the Webflow slider component)
+   ============================================================= */
+/* Webflow's .w-slider ships a default 300px height; the process slider
+   overrides it to auto, the testimonial slider does not. */
+.slider { position: relative; text-align: center; height: 300px; }
+
+.slider__mask {
+  z-index: 1;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+.slider__track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+.slider__slide {
+  flex: 0 0 100%;
+  width: 100%;
+  text-align: left;
+  position: relative;
+}
+
+.slider__arrow {
+  z-index: 3;
+  position: absolute;
+  inset: 0;
+  width: 80px;
+  margin: auto;
+  padding: 0;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+.slider__arrow--left  { right: auto; }
+.slider__arrow--right { left: auto; z-index: 4; }
+.slider__arrow svg {
+  width: 40px;
+  height: 40px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: square;
+}
+.slider__arrow[hidden] { display: none; }
+
+.slider__dots {
+  z-index: 2;
+  position: absolute;
+  inset: auto 0 0;
+  height: 40px;
+  margin: auto;
+  padding-top: 10px;
+  text-align: center;
+}
+.slider__dot {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin: 0 3px .5em;
+  border-radius: 100%;
+  background-color: #fff6;
+  cursor: pointer;
+  transition: background-color .1s;
+  position: relative;
+  padding: 0;
+}
+.slider__dot.is-active { background-color: #fff; }
+
+/* --- process slider --- */
+.slider--process {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-end;
+  align-self: center;
+  align-items: stretch;
+  gap: 0;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  margin-bottom: 52px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  background-color: transparent;
+  position: relative;
+  top: 0;
+}
+.slider--process .slider__mask { max-height: 100%; }
+.slider__slide--process { height: 70%; padding-left: 64px; padding-right: 64px; }
+
+/* --- testimonial slider --- */
+.section--testimonials {
+  background-color: var(--urban-olive);
+  padding-bottom: 32px;
+}
+.testimonials__wrapper { max-width: var(--max-width); }
+.slider--testimonial { position: relative; }
+.slider__slide--testimonial {
+  background-color: var(--urban-olive);
+  padding: 32px 96px 0;
+}
+.slider__arrow--bare svg { display: none; }
+
+.quote {
+  width: 100%;
+  color: var(--carbon);
+  border-left: 5px solid var(--forest-green);
+  padding-top: 0;
+  font-family: var(--font-display);
+  font-size: 24px;
+  line-height: 30px;
+}
+.cite {
+  width: 100%;
+  color: var(--carbon);
+  font-family: var(--font-body);
+}
+
+/* =============================================================
+   WAYS WE WORK (accordion)
+   ============================================================= */
+.section--ways {
+  background-color: var(--light-brown);
+  background-image: none;
+  display: block;
+}
+
+.ways__content {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 64px;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.accordion { width: 100%; }
+
+.accordion__item {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 12px;
+  border-top: 1px solid var(--carbon);
+  border-bottom: 1px solid var(--carbon);
+  padding-top: 12px;
+  padding-bottom: 0;
+}
+/* the original's third card resolves to no border at all */
+.accordion__item--borderless { border: none; }
+
+.accordion__header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 32px;
+  width: 75%;
+  padding: 0;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+}
+.accordion__header .h3 { pointer-events: none; }
+
+.accordion__panel {
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  transition: height 350ms ease-out;
+}
+
+/* =============================================================
+   CAPACITIES
+   ============================================================= */
+.section--capacities {
+  background-color: var(--cotton);
+  background-image: url("assets/images/bg-cream-ellipse.png");
+  background-position: -100% 170%;
+  background-repeat: no-repeat;
+  background-size: 80% 80%;
+  display: block;
+}
+
+.capacities__heading {
+  display: flex;
+  flex-flow: column;
+  color: var(--carbon);
+  max-width: var(--max-width);
+  margin: 0 auto 32px;
+}
+
+.capacities__grid {
+  display: grid;
+  grid-template-rows: auto auto;
+  /* minmax(0,…) keeps the columns equal; plain 1fr lets a wide image's
+     min-content blow one column out and overflow the grid (the original does) */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.capacity-card {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  border: 1px solid var(--beige);
+  border-radius: 8px;
+  background-color: var(--cotton);
+  padding: 16px;
+}
+.capacity-card__media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 260px;
+}
+.capacity-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+.capacity-card__image--top    { object-position: 50% 64%; }
+.capacity-card__image--fourth { object-position: 50% 59%; }
+
+.capacity-card__body {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  height: auto;
+  color: var(--carbon);
+  margin-bottom: 0;
+}
+.h4--capacity { margin-top: 0; margin-bottom: 0; height: auto; line-height: 48px; }
+/* note: inherits the 20px body line-height, not the 24px of .paragraph */
+.capacity-card__text {
+  display: block;
+  color: var(--carbon);
+  margin-bottom: 0;
+}
+/* empty by design — it takes part in the card's space-between distribution,
+   keeping the text block aligned across cards of differing length */
+.capacity-card__footer { flex: none; }
+
+/* =============================================================
+   FOUNDER
+   ============================================================= */
+.section--founder { background-color: var(--urban-olive); }
+.founder__photo { object-fit: cover; }
+
+/* =============================================================
+   NEWSLETTER
+   ============================================================= */
+.newsletter {
+  width: 75%;
+  max-width: var(--max-width);
+  margin: 128px auto;
+  border: 1px solid var(--light-brown);
+  border-radius: 8px;
+  background-color: var(--cotton);
+  padding: 16px 64px 32px;
+}
+.newsletter__intro { margin-bottom: 32px; }
+
+/* =============================================================
+   FOOTER
+   ============================================================= */
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+.site-footer__logo { display: block; width: 100px; height: 36px; padding: 0; }
+
+/* =============================================================
+   ≤ 991px
+   ============================================================= */
+@media screen and (max-width: 991px) {
+  .eyebrow-bar { max-width: 728px; margin-bottom: 32px; }
+  .eyebrow-bar--tight { margin-bottom: 16px; }
+
+  .hero { height: auto; min-height: 100svh; overflow: visible; }
+  .hero__container { padding-bottom: 32px; }
+  .hero__split { max-width: 100%; margin-bottom: 40px; margin-left: 32px; margin-right: 32px; }
+  .hero__content { width: 80%; }
+  .hero__title { font-size: 48px; }
+  .hero__subtitle strong { font-size: 18px; }
+
+  .btn-group { width: auto; min-width: 256px; }
+  .btn-circle { min-width: 36px; min-height: 36px; }
+
+  .split { flex-flow: column; gap: 16px; }
+  .split__media { margin-left: auto; margin-right: auto; }
+  .split__content { width: 100%; }
+
+  .section--testimonials { padding-left: 32px; padding-right: 32px; }
+
+  .section--process { flex-flow: column; height: auto; padding-left: 0; padding-right: 0; }
+  .process__intro {
+    width: 100%;
+    max-width: 728px;
+    margin-right: 0;
+    padding-top: 64px;   /* 48px + the 16px the original gained from its gap */
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+  .process__panel { width: 100%; margin-left: 0; margin-right: 0; }
+
+  .pill { margin-left: 64px; }
+
+  .quote { font-size: 18px; }
+
+  .accordion__header { width: 100%; }
+
+  .founder__photo { border-radius: 8px; margin-left: auto; margin-right: auto; }
+
+  .newsletter { margin-top: 64px; margin-bottom: 64px; }
+
+  .paragraph--footer { padding-left: 32px; padding-right: 32px; }
+}
+
+/* =============================================================
+   ≤ 767px
+   ============================================================= */
+@media screen and (max-width: 767px) {
+  .eyebrow-bar { max-width: none; }
+
+  .hero { overflow: visible; }
+  .hero__container { width: 100%; padding-bottom: 32px; padding-left: 16px; padding-right: 16px; top: 0; left: 0; }
+  .hero__split { margin-bottom: 0; margin-left: 0; margin-right: 0; padding-bottom: 0; }
+  .hero__content { width: 100%; }
+  .hero__title { font-size: 36px; line-height: 60px; }
+  .hero__subtitle strong { font-size: 16px; }
+  .hero__decoration { display: none; }
+
+  .site-header { height: 48px; }
+  .site-header__logo { padding: 16px 0 16px 16px; }
+
+  .section--about     { padding: 8px 16px 16px; }
+  .section--founder   { padding: 8px 16px 16px; }
+  .section--capacities,
+  .section--ways      { padding: 8px 16px 32px; }
+  .section--process   { flex-flow: column; padding-left: 0; padding-right: 0; }
+
+  .paragraph { width: 100%; }
+  .paragraph--light { font-size: 14px; }
+  .paragraph--footer { padding-left: 16px; padding-right: 16px; }
+
+  .split { justify-content: space-between; align-items: stretch; }
+  .split__content { align-items: stretch; width: 100%; margin-left: 0; margin-right: 0; }
+
+  .btn--peach { font-size: 16px; }
+  .btn--schedule { min-width: 160px; }
+  .btn-circle { height: 36px; }
+
+  h2 { font-size: 16px; }
+  .h3 { font-size: 22px; font-weight: 400; line-height: 32px; }
+  .h4, .h4--capacity { font-size: 18px; }
+  .capacity-card__text { font-size: 14px; }
+
+  .process__intro { width: 100%; padding-left: 32px; padding-right: 32px; }
+  .process__panel { width: 100vw; margin-left: 0; margin-right: 0; position: static; }
+  .pill { margin-left: 32px; }
+
+  .slider--process { margin-left: auto; margin-right: auto; display: flex; }
+  .slider__slide--process { padding-left: 64px; padding-right: 64px; }
+
+  /* the original hides both sliders' arrows below this width */
+  .slider__arrow { display: none; }
+
+  .newsletter { margin-top: 32px; margin-bottom: 32px; padding-left: 16px; padding-right: 16px; }
+}
+
+/* =============================================================
+   ≤ 479px
+   ============================================================= */
+@media screen and (max-width: 479px) {
+  p { font-size: 14px; }
+
+  .hero__container { width: 100%; top: 0; left: 0; }
+
+  .btn-group { max-width: 100%; }
+  .btn--schedule { width: 200px; min-width: 120px; }
+
+  .section--capacities { background-image: none; overflow: hidden; }
+  .section--testimonials { padding-bottom: 0; padding-left: 16px; }
+
+  .capacities__grid { grid-template-rows: auto auto auto auto; grid-template-columns: 1fr; }
+  /* the original's shared .card-media rule grows both card types here */
+  .capacity-card__media,
+  .process-card__media { height: 280px; }
+
+  .h3 { font-size: 24px; font-weight: 400; }
+  .h4 { font-size: 22px; }
+  .h4--capacity { height: auto; }
+
+  .slider__slide--testimonial { vertical-align: baseline; margin-bottom: 0; padding: 0 8px; }
+  .quote { margin-bottom: 8px; padding-bottom: 0; font-size: 14px; line-height: 20px; }
+  .cite { margin-bottom: 0; }
+  .cite em { font-size: 14px; }
+
+  .slider--testimonial {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: stretch;
+    position: relative;
+  }
+  .slider--testimonial .slider__mask { background-color: var(--urban-olive); flex: 0 auto; }
+  .slider__dots--testimonial { flex: 0 auto; bottom: 20%; }
+
+  .slider__slide--process { padding-left: 32px; padding-right: 32px; }
+
+  .accordion__item { gap: 16px; }
+
+  .pill { margin-left: 16px; }
+  .process__intro { padding-left: 16px; padding-right: 16px; }
+
+  .site-header__subscribe { margin-right: 16px; }
+
+  .newsletter { margin-top: 16px; margin-bottom: 16px; padding-bottom: 16px; }
+
+  .paragraph--footer { text-align: center; padding-left: 16px; padding-right: 0; }
+}
+
+/* ---------- Motion preferences ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .slider__track, .accordion__panel { transition: none !important; }
+}

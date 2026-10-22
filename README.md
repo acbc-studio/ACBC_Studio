@@ -1,8 +1,7 @@
 # ACBC Studio
 
-A static, dependency-free port of **acbc-studio.com**, previously built in Webflow.
-
-One page, three files, no build step, no framework, no package manager.
+A static, dependency-free port of **acbc-studio.com**, 
+One page, three files, no build step, no framework,
 
 ```
 index.html      the whole page

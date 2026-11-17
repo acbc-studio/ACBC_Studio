@@ -57,7 +57,7 @@
 .op-tag--neutral { background-color: var(--beige); }
 
 /* =============================================================
-   1. HERO — illustration with the thin orbit lines behind it
+   1. HERO — text and illustration
    ============================================================= */
 .op-hero__title {
   font-size: clamp(40px, 5.2vw, 68px);
@@ -69,15 +69,6 @@
   width: 100%;
   max-width: 420px;
   justify-self: center;
-}
-.op-hero__orbit {
-  position: absolute;
-  z-index: -1;
-  inset: -14% -16% -10% -14%;
-  width: 130%;
-  max-width: none;
-  opacity: .35;
-  pointer-events: none;
 }
 .op-hero__art { width: 82%; margin: 0 auto; }
 

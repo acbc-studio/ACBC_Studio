@@ -21,7 +21,7 @@
   <link rel="preload" href="assets/fonts/AesthetNova-Regular.otf" as="font" type="font/otf" crossorigin>
   <link rel="preload" href="assets/fonts/AdelleSans-Regular.otf" as="font" type="font/otf" crossorigin>
   <link rel="stylesheet" href="styles.css?v=15">
-  <link rel="stylesheet" href="offering.css?v=8">
+  <link rel="stylesheet" href="offering.css?v=9">
 </head>
 
 <body class="page-wayfinding">
@@ -347,32 +347,52 @@
     </section>
 
     <!-- ============================= 7b. WHAT YOU KEEP · stone ============================= -->
-    <!-- [TO ADD] The digital hub mockup replaces the placeholder in the browser frame. -->
-    <section class="section section--stone" id="what-you-keep">
+    <!-- The hub on a laptop: three views, sample content from the housing-coalition example. -->
+    <section class="section section--stone op-hub-section" id="what-you-keep" aria-labelledby="hub-title">
       <div class="container op-hub">
-        <div class="op-hub__text">
-          <h2 class="heading">What you keep</h2>
-          <p class="text-lg">The guidance from our time together doesn’t end when I leave. It lives in a digital hub built for your team, somewhere you’ll actually come back to, instead of a shared drive folder that gets forgotten.</p>
-          <dl class="op-hub__rows">
-            <div class="op-hub__row">
-              <dt class="label">Playbook</dt>
-              <dd>Every activity, template, review question, figure and structure we made, found by the moment you’re in, not by date.</dd>
-            </div>
-            <div class="op-hub__row">
-              <dt class="label">Field Notes</dt>
-              <dd>A running log of what we tried, learned and made as it happened, ending with an honest read at handover on each outcome: what moved, what didn’t, and where you ran into the edges of how your institution is set up.</dd>
-            </div>
-          </dl>
+        <div class="op-hub__head">
+          <p class="label">What you keep</p>
+          <h2 class="heading" id="hub-title">A hub your team will actually come back to.</h2>
+          <p class="text-lg">The guidance from our time together doesn’t end when I leave. It lives in a digital hub built for your team, instead of a shared drive folder that gets forgotten.</p>
         </div>
-        <figure class="op-hub__figure">
-          <div class="op-browser">
-            <div class="op-browser__bar" aria-hidden="true"><span></span><span></span><span></span></div>
-            <div class="op-browser__body">
-              <p class="op-browser__placeholder">Digital hub mockup coming soon</p>
-            </div>
+        <div class="op-hub__rows">
+          <p class="label op-hub__hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 11V5a1.5 1.5 0 0 1 3 0v5"/><path d="M12 10V4a1.5 1.5 0 0 1 3 0v6"/><path d="M15 10.5V6a1.5 1.5 0 0 1 3 0v8a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-2.7L3.5 13a1.5 1.5 0 0 1 2.5-1.6L9 15V11"/></svg> Click to look inside</p>
+          <div class="op-hub__tabs" role="tablist" aria-label="Views of the hub">
+            <button class="op-hub__tab" role="tab" type="button" id="hub-tab-1" aria-controls="hub-screen" aria-selected="true" tabindex="0" data-hub="0">
+              <span class="op-hub__num">1</span>
+              <span class="op-hub__text"><span class="label op-hub__kicker">Playbook</span><span class="op-hub__title">The dashboard</span><span class="op-hub__body">Every activity, template, review question, figure and structure we made, found by the moment you’re in.</span></span>
+              <span class="op-hub__chev" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+            </button>
+            <button class="op-hub__tab" role="tab" type="button" id="hub-tab-2" aria-controls="hub-screen" aria-selected="false" tabindex="-1" data-hub="1">
+              <span class="op-hub__num">2</span>
+              <span class="op-hub__text"><span class="label op-hub__kicker">Field Notes</span><span class="op-hub__title">The log</span><span class="op-hub__body">What we talked through, decided and tried, and the guidance along the way, ending with an honest read at handover.</span></span>
+              <span class="op-hub__chev" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+            </button>
+            <button class="op-hub__tab" role="tab" type="button" id="hub-tab-3" aria-controls="hub-screen" aria-selected="false" tabindex="-1" data-hub="2">
+              <span class="op-hub__num">3</span>
+              <span class="op-hub__text"><span class="label op-hub__kicker">Playbook</span><span class="op-hub__title">An activity</span><span class="op-hub__body">Each tool is ready to use again, like this map of where your relationships really stand, filled in with your own work.</span></span>
+              <span class="op-hub__chev" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+            </button>
           </div>
-          <figcaption>An example hub. Yours is built around your team’s work.</figcaption>
-        </figure>
+        </div>
+        <div class="op-hub__stage">
+          <div class="op-laptop">
+            <div class="op-laptop__body">
+              <div class="op-laptop__screen" id="hub-screen" role="tabpanel" aria-labelledby="hub-tab-1">
+                <img src="assets/images/wayfinding/hub/screen-1-dashboard.png" width="1600" height="1000" loading="lazy"
+                     alt="Example hub dashboard: “What are you facing this week?”, with moments grouped under Listen and Translate, and the latest note from the guide." data-hub-img>
+              </div>
+            </div>
+            <div class="op-laptop__base"><span></span></div>
+          </div>
+          <div class="op-hub__controls">
+            <button class="op-hub__nav" type="button" data-hub-step="-1" aria-label="Previous view"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+            <span class="op-hub__dots" aria-hidden="true"><span class="is-on"></span><span></span><span></span></span>
+            <span class="op-hub__count" data-hub-count>1 of 3 · The dashboard</span>
+            <button class="op-hub__nav" type="button" data-hub-step="1" aria-label="Next view"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+          </div>
+          <p class="op-hub__caption">An example hub, shown in ACBC colours. Yours is set up in your colours, around your team’s work.</p>
+        </div>
       </div>
     </section>
 
@@ -612,6 +632,6 @@
   </footer>
 
 <script src="script.js?v=4" defer></script>
-<script src="offering.js?v=2" defer></script>
+<script src="offering.js?v=3" defer></script>
 </body>
 </html>

@@ -103,3 +103,70 @@
     });
   });
 })();
+
+/* =============================================================
+   What you keep: the hub on a laptop. The rows are tabs that
+   switch the screen; arrows and dots cycle 1 → 2 → 3 → 1.
+   ============================================================= */
+(function () {
+  'use strict';
+
+  const tabs = Array.from(document.querySelectorAll('.op-hub__tab'));
+  if (!tabs.length) return;
+  const VIEWS = [
+    { title: 'The dashboard', src: 'assets/images/wayfinding/hub/screen-1-dashboard.png',
+      alt: 'Example hub dashboard: “What are you facing this week?”, with moments grouped under Listen and Translate, and the latest note from the guide.' },
+    { title: 'The log', src: 'assets/images/wayfinding/hub/screen-2-field-notes.png',
+      alt: 'Example Field Notes log: two quarters with one dot per note, then April’s entries: a working session, a piece of guidance and a decision.' },
+    { title: 'An activity', src: 'assets/images/wayfinding/hub/screen-3-activity.png',
+      alt: 'Example activity, “Who’s Missing, and Why”: a map of who the decision affects most, where each relationship stands, how the team will show up first, outreach and engagement.' }
+  ];
+  const img = document.querySelector('[data-hub-img]');
+  const screen = document.getElementById('hub-screen');
+  const count = document.querySelector('[data-hub-count]');
+  const dots = Array.from(document.querySelectorAll('.op-hub__dots span'));
+  let current = 0;
+  let preloaded = false;
+
+  // preload the other two screens once the section is near, so switching is instant
+  function preload() {
+    if (preloaded) return;
+    preloaded = true;
+    VIEWS.forEach(function (v) { const i = new Image(); i.src = v.src; });
+  }
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(function (entries) {
+      if (entries.some(function (e) { return e.isIntersecting; })) { preload(); io.disconnect(); }
+    }, { rootMargin: '600px' });
+    io.observe(screen);
+  } else { preload(); }
+
+  function show(i, focus) {
+    preload();
+    current = (i + VIEWS.length) % VIEWS.length;
+    tabs.forEach(function (t, k) {
+      const on = k === current;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+    });
+    dots.forEach(function (d, k) { d.classList.toggle('is-on', k === current); });
+    img.src = VIEWS[current].src;
+    img.alt = VIEWS[current].alt;
+    screen.setAttribute('aria-labelledby', tabs[current].id);
+    count.textContent = (current + 1) + ' of 3 · ' + VIEWS[current].title;
+    if (focus) tabs[current].focus();
+  }
+
+  tabs.forEach(function (t, k) {
+    t.addEventListener('click', function () { show(k, false); });
+    t.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); show(current + 1, true); }
+      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); show(current - 1, true); }
+      if (e.key === 'Home') { e.preventDefault(); show(0, true); }
+      if (e.key === 'End') { e.preventDefault(); show(VIEWS.length - 1, true); }
+    });
+  });
+  document.querySelectorAll('[data-hub-step]').forEach(function (b) {
+    b.addEventListener('click', function () { show(current + Number(b.getAttribute('data-hub-step')), false); });
+  });
+})();

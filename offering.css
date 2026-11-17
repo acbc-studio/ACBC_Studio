@@ -609,11 +609,9 @@
 .op-plan__block > .label { font-size: 12px; }
 
 /* filled-in version: no chips; marks and blocks sit on cotton */
-.op-plan--filled .op-plan__track { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 96px; }
+.op-plan--filled .op-plan__track { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
 /* no connecting line between the blocks or out to the handover */
 .op-plan--filled .op-plan__track::before { display: none; }
-.op-plan--filled .op-plan__mark .op-dot,
-.op-plan--filled .op-plan__mark .label { background-color: var(--cotton); }
 .op-plan__phase { font-family: var(--font-label); font-size: 15px; letter-spacing: .08em; text-transform: uppercase; }
 .op-plan__points {
   position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px;
@@ -625,7 +623,7 @@
 .op-plan__points .op-dot { background-color: var(--stone); }
 .op-plan__points .op-dot--filled { background-color: var(--carbon); }
 .op-plan__texts {
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 96px; gap: 16px;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px;
   margin-top: 24px;
 }
 .op-plan__text { display: flex; flex-direction: column; gap: 10px; padding: 0 4px; }
@@ -782,7 +780,6 @@
   .op-plan--filled .op-plan__text:nth-child(1) { order: 2; margin-bottom: 12px; }
   .op-plan--filled .op-plan__block:nth-child(2) { order: 3; }
   .op-plan--filled .op-plan__text:nth-child(2) { order: 4; }
-  .op-plan--filled .op-plan__mark { order: 5; justify-content: flex-start; padding: 0; }
   .op-plan--filled .op-plan__legend { order: 6; margin-top: 8px; }
 }
 

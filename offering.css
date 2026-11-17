@@ -1,0 +1,728 @@
+/* =============================================================
+   ACBC Studio — offering pages (Sensemaking; Wayfinding to follow)
+   Built from sensemaking-page-v5.md. Loads after styles.css and reuses
+   its tokens, sections, buttons, header, footer and FAQ.
+   Breakpoints match styles.css: 991px (tablet) / 767px (phone).
+
+   Colour jobs on these pages (hold exactly):
+   olive  = Shared Compass   · tangerine/peach = Living Map
+   butter = Wayfinding only  · everything else neutral
+   ============================================================= */
+
+/* ---------- Shared pieces ---------- */
+.op-measure { display: flex; flex-direction: column; gap: 20px; max-width: 680px; }
+.op-measure--wide { max-width: calc(860px + var(--gutter) * 2); }
+.op-heading-gap { margin-bottom: clamp(32px, 4vw, 56px); }
+/* a second section on the same background: no doubled gap between them */
+.op-follow { padding-top: 0; }
+
+.op-split {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: clamp(32px, 6vw, 96px);
+  align-items: center;
+}
+.op-split__text { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+
+/* quiet arrow links; the underline carries the shape's colour */
+.op-link {
+  align-self: flex-start;
+  font-family: var(--font-label);
+  font-size: 16px;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+}
+.op-link:hover { text-decoration-thickness: 2px; }
+.op-link--compass { text-decoration-color: var(--forest-green); text-decoration-thickness: 2px; }
+.op-link--compass:hover { text-decoration-color: var(--urban-olive); text-decoration-thickness: 3px; }
+.op-link--map { text-decoration-color: var(--tangerine); text-decoration-thickness: 2px; }
+.op-link--map:hover { text-decoration-thickness: 3px; }
+.op-link--light { color: var(--cotton); }
+
+/* small uppercase tags: olive = Compass, peach = Map, beige = shared */
+.op-tag {
+  display: inline-block;
+  align-self: flex-start;
+  border-radius: 999px;
+  padding: calc(4px + var(--pill-nudge)) calc(14px - .1em) calc(4px - var(--pill-nudge)) 14px;
+  font-family: var(--font-label);
+  font-size: 13px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+.op-tag--compass { background-color: var(--urban-olive); }
+.op-tag--map     { background-color: var(--peach); }
+.op-tag--neutral { background-color: var(--beige); }
+
+/* =============================================================
+   1. HERO — text and illustration
+   ============================================================= */
+.op-hero__title {
+  font-size: clamp(40px, 5.2vw, 68px);
+  line-height: 1.1;
+}
+.op-hero__media {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  max-width: 420px;
+  justify-self: center;
+}
+.op-hero__art { width: 82%; margin: 0 auto; }
+
+/* =============================================================
+   2. MAYBE — two pains side by side
+   ============================================================= */
+.op-pains {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(32px, 5vw, 72px);
+}
+.op-pain {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--carbon);
+}
+.op-pain__title { font-size: clamp(24px, 2.4vw, 30px); line-height: 1.25; margin-bottom: 4px; }
+.op-pain .op-link { margin-top: 8px; }
+
+/* =============================================================
+   3. WHAT GETS IN THE WAY — the strike-through
+   ============================================================= */
+.op-strike {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 16px 0;
+  padding: 28px 0;
+  border-top: 1px solid var(--beige);
+  border-bottom: 1px solid var(--beige);
+}
+.op-strike__before {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2vw, 24px);
+  line-height: 1.35;
+  color: rgb(26 48 49 / .5);
+}
+.op-strike__before s {
+  text-decoration-line: line-through;
+  text-decoration-color: var(--carbon);
+  text-decoration-thickness: 1px;
+}
+.op-strike__after {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2vw, 24px);
+  line-height: 1.35;
+}
+.op-strike__label { margin-top: 6px; font-size: 12px; }
+
+/* =============================================================
+   4 + 14. PHOTO / GRADIENT WITH THE BLURRED TEXT BOX
+   ============================================================= */
+.op-photo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 680px;
+  padding: clamp(64px, 9vw, 128px) 0;
+  overflow: hidden;
+}
+.op-photo__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.op-photo .container { position: relative; }
+.op-glass {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 580px;
+  padding: 48px;
+  border-radius: var(--radius);
+  background-color: rgb(254 249 242 / 0.78);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+.op-glass__line {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(24px, 2.6vw, 32px);
+  line-height: 1.3;
+}
+.op-photo--closing .op-glass { max-width: 640px; }
+.op-photo--closing .signoff { margin-top: 4px; }
+.op-closing__actions { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-top: 8px; }
+.op-closing__note { margin-bottom: 8px; font-size: 15px; line-height: 1.5; }
+.op-photo--closing .text-link-line { margin-top: 4px; }
+
+/* =============================================================
+   5. IN PRACTICE — story rows between thin rules
+   ============================================================= */
+.op-stories { border-top: 1px solid var(--beige); }
+.op-story {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: clamp(24px, 4vw, 64px);
+  padding: clamp(28px, 3vw, 40px) 0;
+  border-bottom: 1px solid var(--beige);
+}
+.op-story__aside { display: flex; flex-direction: column; gap: 14px; }
+.op-story__aside p { font-family: var(--font-display); font-size: 20px; line-height: 1.35; }
+.op-after-stories { margin-top: clamp(32px, 4vw, 48px); }
+
+/* =============================================================
+   6 + 10. PRINCIPLES / KEEP — two columns under dark rules
+   ============================================================= */
+.op-principles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(32px, 5vw, 72px);
+}
+.op-principle {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 24px;
+  border-top: 1px solid var(--carbon);
+}
+.op-principle__title { font-size: clamp(22px, 2.2vw, 28px); line-height: 1.25; }
+.op-principle__sub { font-style: italic; }
+.op-principle ul,
+.op-shape ul,
+.op-step ul,
+.op-wont__fit ul { margin: 0; padding-left: 1.1em; list-style: disc; }
+.op-principle li + li,
+.op-shape li + li,
+.op-step li + li,
+.op-wont__fit li + li { margin-top: 8px; }
+
+/* =============================================================
+   7. DIFFERENT SHAPES — two cards, then the Journey Log
+   ============================================================= */
+.op-shapes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.op-shape {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: clamp(28px, 3vw, 40px);
+  border-radius: var(--radius);
+  background-color: var(--cotton);
+  border-top: 4px solid var(--beige);
+  font-size: 17px;
+  scroll-margin-top: 96px;
+}
+.op-shape--compass { border-top-color: var(--urban-olive); }
+.op-shape--map     { border-top-color: var(--tangerine); }
+.op-shape--log     { grid-column: 1 / -1; }
+.op-shape__title { font-size: clamp(28px, 2.8vw, 36px); line-height: 1.2; }
+.op-shape__for { font-style: italic; }
+.op-shape__block { display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 1px solid var(--beige); }
+.op-shape__block .label { margin: 0; font-size: 13px; font-weight: 400; }
+.op-shape__price { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--beige); }
+.op-shape__log {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: clamp(24px, 4vw, 64px);
+  align-items: start;
+}
+.op-shape__log .op-shape__for { margin-top: 8px; }
+
+/* =============================================================
+   8. EXAMPLES — tabs and figures
+   ============================================================= */
+.op-examples__label { margin-bottom: 16px; font-size: 13px; }
+.op-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.op-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px;
+  border: 1px solid rgb(26 48 49 / .25);
+  border-radius: 12px;
+  text-align: left;
+  transition: background-color .2s ease, border-color .2s ease;
+}
+.op-tab:hover { background-color: var(--stone); }
+.op-tab[aria-selected="true"] { background-color: var(--cotton); border-color: var(--carbon); }
+.op-tab__label { font-size: 12px; }
+.op-tab__title { font-family: var(--font-display); font-size: 20px; line-height: 1.3; }
+.op-tab:focus-visible { outline: 2px solid var(--carbon); outline-offset: 3px; }
+
+.op-panel:focus-visible { outline: 2px solid var(--carbon); outline-offset: 6px; border-radius: var(--radius); }
+.op-figure { margin: 0; }
+/* the figures carry their own title and background */
+.op-figure img {
+  width: 100%;
+  border: 1px solid rgb(26 48 49 / .12);
+  border-radius: var(--radius);
+  background-color: var(--cotton);
+}
+.op-figure figcaption { max-width: 760px; margin-top: 20px; font-size: 16px; line-height: 1.55; }
+.op-figure__full { display: inline-block; margin-top: 12px; font-size: 15px; }
+.op-next {
+  margin-top: 20px;
+  font-family: var(--font-label);
+  font-size: 15px;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+}
+.op-next:hover { text-decoration-thickness: 2px; }
+
+/* =============================================================
+   9. READINESS MEMO — three solid panels joined by arrows
+   ============================================================= */
+.op-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.op-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 32px;
+  border-radius: var(--radius);
+  background-color: var(--stone);
+  font-size: 17px;
+}
+.op-step + .op-step::before {
+  content: "→";
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  transform: translateY(-50%);
+  font-size: 22px;
+  line-height: 1;
+}
+.op-step__when { font-size: 12px; }
+.op-step__title { font-size: clamp(24px, 2.4vw, 28px); line-height: 1.2; }
+.op-step__note { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--beige); font-size: 15px; }
+
+/* =============================================================
+   10. TIMELINE — dotted path; outlined = team, filled = communities
+   ============================================================= */
+.op-dot {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--carbon);
+  border-radius: 50%;
+  background-color: var(--stone);
+  vertical-align: -2px;
+}
+.op-dot--filled { background-color: var(--carbon); }
+.op-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  margin-bottom: 32px;
+  font-family: var(--font-label);
+  font-size: 15px;
+}
+.op-legend > span { display: inline-flex; align-items: center; gap: 10px; }
+
+.op-timeline {
+  position: relative;
+  max-width: 760px;
+  margin: 0 0 clamp(56px, 6vw, 88px);
+  padding: 0;
+  list-style: none;
+}
+.op-timeline::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 7px;
+  border-left: 2px dotted var(--carbon);
+}
+.op-timeline__step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0 0 36px 48px;
+}
+.op-timeline__step:last-child { padding-bottom: 0; }
+.op-timeline__step > .op-dot { position: absolute; top: 3px; left: 0; }
+.op-timeline__step .label { font-size: 13px; }
+.op-with { color: var(--forest-green); text-decoration: underline; text-underline-offset: 4px; }
+.op-timeline__title { font-size: clamp(20px, 2vw, 23px); line-height: 1.3; }
+.op-keep { margin-top: 0; }
+
+/* =============================================================
+   11. WHAT CHANGES — six cotton cards on olive
+   ============================================================= */
+.op-changes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+.op-change {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 32px;
+  border-radius: var(--radius);
+  background-color: var(--cotton);
+  font-size: 17px;
+}
+.op-change__title { font-size: clamp(22px, 2.2vw, 26px); line-height: 1.25; margin-bottom: 4px; }
+.op-change p { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 12px; }
+.op-change .label { padding-top: .35em; font-size: 12px; line-height: 1.4; color: var(--forest-green); }
+
+/* =============================================================
+   12. WHAT IT WON'T FIX — forest, statement left, list right
+   ============================================================= */
+.op-wont {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 96px);
+  align-items: start;
+}
+.op-wont__statement { display: flex; flex-direction: column; gap: 20px; }
+.op-wont__but { font-family: var(--font-display); font-size: clamp(22px, 2.2vw, 27px); line-height: 1.35; }
+.op-wont__fit { display: flex; flex-direction: column; gap: 16px; padding-top: 24px; border-top: 1px solid var(--urban-olive); }
+.op-wont__fit .label { color: var(--urban-olive); font-family: var(--font-label); }
+.op-wont__fit .op-link { display: inline-block; margin-top: 6px; }
+
+/* =============================================================
+   13. QUESTIONS
+   ============================================================= */
+.op-faq-label { margin-bottom: 12px; color: var(--forest-green); }
+
+/* =============================================================
+   15. OTHER PLACES TO BEGIN — two stone cards
+   ============================================================= */
+.op-others {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.op-other {
+  position: relative;
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+  padding: 32px 72px 32px 32px;
+  border-radius: var(--radius);
+  background-color: var(--stone);
+  font-size: 17px;
+  transition: background-color .2s ease;
+}
+.op-other:hover { background-color: var(--beige); }
+.op-other__text { display: flex; flex-direction: column; gap: 8px; }
+.op-other__title { font-size: 26px; line-height: 1.25; }
+.op-other__title a { text-decoration: none; }
+/* the whole card is the link */
+.op-other__title a::after { content: ""; position: absolute; inset: 0; border-radius: var(--radius); }
+.op-other__title a:focus-visible { outline: none; }
+.op-other:focus-within { outline: 2px solid var(--carbon); outline-offset: 3px; }
+.op-other__arrow { position: absolute; right: 28px; top: 50%; transform: translateY(-50%); transition: transform .2s ease; }
+.op-other__arrow img { width: 12px; }
+.op-other:hover .op-other__arrow { transform: translate(4px, -50%); }
+.op-others__all { margin-top: 32px; }
+
+/* =============================================================
+   FOOTER — forest, cotton logo (offering pages)
+   ============================================================= */
+.site-footer--forest { background-color: var(--forest-green); border-top: 0; color: var(--cotton); }
+.site-footer--forest .site-footer__social a { border-color: var(--cotton); }
+.site-footer--forest .site-footer__legal { border-top-color: rgb(254 249 242 / .2); }
+
+/* =============================================================
+   ≤ 991px — tablet
+   ============================================================= */
+@media screen and (max-width: 991px) {
+  .op-split { grid-template-columns: 1fr; }
+  .op-hero__media { max-width: 320px; justify-self: start; margin-left: 12%; }
+
+  .op-pains,
+  .op-principles,
+  .op-wont { grid-template-columns: 1fr; }
+
+  .op-story,
+  .op-shape__log { grid-template-columns: 1fr; gap: 16px; }
+
+  .op-steps { grid-template-columns: 1fr; gap: 44px; }
+  .op-step + .op-step::before { content: "↓"; top: -34px; left: 32px; transform: none; }
+
+  .op-others { grid-template-columns: 1fr; max-width: 640px; }
+}
+
+/* =============================================================
+   ≤ 767px — phone
+   ============================================================= */
+@media screen and (max-width: 767px) {
+  .op-hero__media { max-width: 240px; }
+
+  .op-shapes,
+  .op-changes { grid-template-columns: 1fr; }
+  .op-shape--log { grid-column: auto; }
+
+  .op-tabs { grid-template-columns: 1fr; }
+  .op-tab { padding: 14px 16px; }
+
+  .op-photo { min-height: 0; }
+  .op-glass { padding: 28px 20px; }
+
+  .op-change,
+  .op-step { padding: 24px; }
+
+  .op-other { grid-template-columns: 72px minmax(0, 1fr); gap: 18px; padding: 24px 56px 24px 20px; }
+  .op-other__arrow { right: 20px; }
+  .op-other__title { font-size: 22px; }
+}
+
+/* =============================================================
+   WAYFINDING PAGE
+   Butter is this page's only accent (scene tags). No olive or
+   peach/tangerine here, so shared bits that use them are neutralised.
+   ============================================================= */
+.op-tag--butter { background-color: var(--butter); border: 1px solid rgb(26 48 49 / .15); }
+.page-wayfinding .faq__q:hover .faq__icon,
+.page-wayfinding .faq__q:focus-visible .faq__icon { background-color: var(--beige); }
+
+/* hero: three outcomes */
+.op-checks { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.op-checks li { position: relative; padding-left: 28px; }
+.op-checks li::before {
+  content: ""; position: absolute; left: 2px; top: .55em;
+  width: 12px; height: 12px; border: 1.5px solid var(--carbon); border-radius: 50%;
+}
+
+/* maybe: 2 × 2, bold lead in body type */
+.op-pains--four { row-gap: clamp(40px, 5vw, 64px); }
+.op-pain__lead { font-family: var(--font-body); font-weight: 700; font-size: var(--text-lg); line-height: 1.4; }
+
+/* the grant strip: three panels joined by a thin carbon line, only the middle filled */
+.op-strip {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  margin: clamp(40px, 5vw, 56px) 0;
+}
+.op-strip::before {
+  content: ""; position: absolute; z-index: 0; left: 8%; right: 8%; top: 60px;
+  border-top: 1px solid var(--carbon);
+}
+.op-strip__item { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 10px; }
+.op-strip__panel {
+  display: flex; flex-direction: column; gap: 10px;
+  min-height: 120px; padding: 24px; border-radius: var(--radius);
+  background-color: var(--cotton); font-size: 17px; line-height: 1.5;
+}
+.op-strip__panel .label { font-size: 12px; }
+.op-strip__panel--open { border: 1.5px dashed var(--carbon); }
+.op-strip__panel--funded { border: 1.5px solid var(--carbon); background-color: var(--stone); flex: 1; }
+.op-strip__panel--funded p:last-child { font-family: var(--font-display); font-size: 22px; line-height: 1.3; }
+.op-strip__under { font-size: 12px; padding-left: 4px; }
+
+/* the closing bridge line in display type */
+.op-bridge { margin-top: 8px; font-family: var(--font-display); font-size: clamp(22px, 2.3vw, 28px); line-height: 1.35; }
+.op-bridge strong { font-weight: 400; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; }
+
+/* lead line in display type */
+.op-lead { font-family: var(--font-display); font-size: clamp(22px, 2.3vw, 28px); line-height: 1.35; }
+
+/* how it works + six months: the same plan figure, empty then filled in.
+   Carbon and stone only: dotted line = time, outlined dot = team, filled = communities */
+.op-plan { margin: 0 0 20px; }
+.op-plan__areas { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.op-plan__areas .label { font-size: 11px; }
+.op-plan__chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.op-plan__chips li {
+  padding: calc(5px + var(--pill-nudge)) calc(14px - .1em) calc(5px - var(--pill-nudge)) 14px;
+  border: 1px solid var(--carbon); border-radius: 999px; background-color: var(--cotton);
+  font-family: var(--font-label); font-size: 13px; letter-spacing: .1em; text-transform: uppercase;
+}
+/* thin lines from the chips down to each quarter's slot */
+.op-plan__fan { position: relative; height: 48px; margin: 0 auto; width: calc(100% - 2 * 96px); }
+.op-plan__fan::before {
+  content: ""; position: absolute; left: 50%; top: 0; height: 50%; border-left: 1px solid var(--carbon);
+}
+.op-plan__fan::after {
+  content: ""; position: absolute; left: 25%; right: 25%; top: 50%; bottom: 0;
+  border: 1px solid var(--carbon); border-bottom: 0;
+}
+.op-plan__track {
+  position: relative;
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr) minmax(0, 1fr) 96px;
+  align-items: stretch;
+  gap: 16px;
+}
+.op-plan__track::before {
+  content: ""; position: absolute; z-index: 0; left: 48px; right: 48px; top: 50%;
+  border-top: 2px dotted var(--carbon);
+}
+.op-plan__track > * { position: relative; z-index: 1; }
+.op-plan__mark { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+.op-plan__mark .op-dot { background-color: var(--stone); }
+.op-plan__mark .label { font-size: 11px; white-space: nowrap; padding: 2px 6px; background-color: var(--stone); }
+.op-plan__block {
+  display: flex; flex-direction: column; gap: 14px;
+  padding: 24px; border: 1.5px solid var(--carbon); border-radius: var(--radius); background-color: var(--stone);
+}
+.op-plan__block > .label { font-size: 12px; }
+.op-plan__slot {
+  padding: 18px 20px; border: 1.5px dashed var(--carbon); border-radius: 12px; background-color: var(--cotton);
+  font-family: var(--font-display); font-size: clamp(18px, 1.8vw, 22px); line-height: 1.3;
+}
+
+/* filled-in version: no chips; marks and blocks sit on cotton */
+.op-plan--filled .op-plan__track { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 96px; }
+.op-plan--filled .op-plan__track::before { left: 0; }
+.op-plan--filled .op-plan__mark .op-dot,
+.op-plan--filled .op-plan__mark .label { background-color: var(--cotton); }
+.op-plan__phase { font-family: var(--font-label); font-size: 15px; letter-spacing: .08em; text-transform: uppercase; }
+.op-plan__points {
+  position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px;
+  margin: 4px 0 0; padding: 0; list-style: none;
+}
+.op-plan__points::before { content: ""; position: absolute; left: 8px; right: 24px; top: 7px; border-top: 2px dotted var(--carbon); }
+.op-plan__points li { position: relative; display: flex; flex-direction: column; gap: 10px; font-size: 15px; line-height: 1.35; }
+.op-plan__points .op-dot { background-color: var(--stone); }
+.op-plan__points .op-dot--filled { background-color: var(--carbon); }
+.op-plan__texts {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 96px; gap: 16px;
+  margin-top: 24px;
+}
+.op-plan__text { display: flex; flex-direction: column; gap: 10px; padding: 0 4px; }
+.op-plan__text .label { font-size: 13px; }
+.op-plan__legend { margin: 24px 0 0; font-size: 14px; }
+.op-plan__end { max-width: 640px; margin-top: clamp(40px, 5vw, 56px); }
+
+.op-sizing { max-width: 760px; margin-bottom: clamp(40px, 5vw, 56px); font-style: italic; }
+
+.op-card-stone {
+  display: flex; flex-direction: column; gap: 14px;
+  padding: 32px; border-radius: var(--radius); background-color: var(--stone); font-size: 17px;
+}
+.op-card-stone ul { margin: 0; padding-left: 1.1em; list-style: disc; }
+.op-card-stone li + li { margin-top: 8px; }
+
+/* the four focus areas: a 2 × 2 grid of cotton cards, options not steps */
+.op-areas__label { margin-bottom: 16px; font-size: 13px; }
+.op-areas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.op-area {
+  display: flex; flex-direction: column; gap: 16px;
+  padding: clamp(28px, 3vw, 36px); border-radius: var(--radius); background-color: var(--cotton); font-size: 17px;
+}
+.op-area__icon { width: 64px; height: auto; }
+.op-area__name { display: flex; flex-direction: column; gap: 4px; }
+.op-area__name p { font-style: italic; line-height: 1.45; }
+.op-area__title { font-size: clamp(26px, 2.6vw, 32px); line-height: 1.15; }
+.op-area__lines { display: flex; flex-direction: column; gap: 10px; margin-top: auto; padding-top: 16px; border-top: 1px solid var(--beige); }
+.op-area__line { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 12px; font-size: 16px; line-height: 1.5; }
+.op-area__line .label { padding-top: .3em; font-size: 12px; line-height: 1.4; }
+
+/* moments: 2 × 2 scenes with butter tags */
+.op-moments { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.op-moment {
+  display: flex; flex-direction: column; gap: 14px;
+  padding: 32px; border-radius: var(--radius); background-color: var(--cotton); font-size: 17px;
+}
+
+/* what you keep: intro left, hub mockup right in a browser frame */
+.op-hub { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.op-hub__text { display: flex; flex-direction: column; gap: 20px; max-width: 560px; }
+.op-hub__rows { margin: 8px 0 0; border-top: 1px solid rgb(26 48 49 / .2); }
+.op-hub__row { display: flex; flex-direction: column; gap: 6px; padding: 18px 0; border-bottom: 1px solid rgb(26 48 49 / .2); }
+.op-hub__row dt { font-size: 13px; }
+.op-hub__row dd { margin: 0; font-size: 17px; }
+.op-hub__figure { margin: 0; }
+.op-hub__figure figcaption { margin-top: 12px; font-size: 15px; font-style: italic; }
+.op-browser { border: 1.5px solid var(--carbon); border-radius: var(--radius); background-color: var(--cotton); overflow: hidden; }
+.op-browser__bar { display: flex; gap: 8px; padding: 14px 18px; border-bottom: 1.5px solid var(--carbon); }
+.op-browser__bar span { width: 11px; height: 11px; border: 1.5px solid var(--carbon); border-radius: 50%; }
+.op-browser__body { display: flex; align-items: center; justify-content: center; aspect-ratio: 16 / 10; padding: 24px; }
+.op-browser__body img { width: 100%; height: 100%; object-fit: cover; }
+.op-browser__placeholder {
+  font-family: var(--font-label); font-size: 14px; letter-spacing: .1em; text-transform: uppercase;
+  color: rgb(26 48 49 / .55); text-align: center;
+}
+
+/* fit: one paragraph across the top of the practical section */
+.op-fitline { display: flex; flex-direction: column; gap: 16px; max-width: 860px; margin-bottom: clamp(48px, 6vw, 80px); padding-bottom: clamp(48px, 6vw, 80px); border-bottom: 1px solid rgb(26 48 49 / .2); }
+
+/* won't fix */
+
+/* a typical month + cost */
+.op-month {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 96px);
+  align-items: start;
+}
+.op-month__col { display: flex; flex-direction: column; gap: 20px; }
+.op-month__fold { margin-top: 8px; }
+.op-month__fold .faq__q { font-size: 20px; }
+.op-included { margin: 0; padding-left: 1.1em; list-style: disc; }
+.op-included li + li { margin-top: 10px; }
+.op-cost { padding: clamp(28px, 3vw, 40px); border-radius: var(--radius); background-color: var(--cotton); }
+.op-cost__price { font-family: var(--font-display); font-size: clamp(22px, 2.3vw, 28px); line-height: 1.35; }
+.op-cost__price strong { font-weight: 400; }
+.op-cost__funders { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 12px; padding-top: 16px; border-top: 1px solid var(--beige); font-size: 16px; }
+.op-cost__funders .label { padding-top: .3em; font-size: 12px; }
+
+@media screen and (max-width: 991px) {
+  .op-strip { grid-template-columns: 1fr; gap: 20px; }
+  .op-strip::before { left: 32px; right: auto; top: 24px; bottom: 24px; border-top: 0; border-left: 1px solid var(--carbon); }
+  .op-plan__fan { display: none; }
+  .op-plan__areas { margin-bottom: 20px; }
+  .op-plan__track,
+  .op-plan--filled .op-plan__track { grid-template-columns: 1fr; gap: 12px; }
+  .op-plan__track::before { left: 50%; right: auto; top: 0; bottom: 0; border-top: 0; border-left: 2px dotted var(--carbon); }
+  .op-plan__mark { flex-direction: row; justify-self: center; padding: 4px 8px; }
+  .op-plan__texts { grid-template-columns: 1fr; gap: 24px; }
+  .op-areas, .op-hub, .op-month { grid-template-columns: 1fr; }
+}
+@media screen and (max-width: 767px) {
+  .op-moments { grid-template-columns: 1fr; }
+  .op-moment, .op-card-stone, .op-area { padding: 24px; }
+  .op-area__line { grid-template-columns: 1fr; gap: 2px; }
+  .op-plan__points { grid-template-columns: 1fr; gap: 14px; }
+  .op-plan__points::before { left: 7px; right: auto; top: 8px; bottom: 8px; border-top: 0; border-left: 2px dotted var(--carbon); }
+  .op-plan__points li { flex-direction: row; align-items: center; gap: 12px; }
+  /* filled figure: each phase's text right under its own block */
+  .op-plan--filled { display: flex; flex-direction: column; gap: 16px; }
+  .op-plan--filled .op-plan__track,
+  .op-plan--filled .op-plan__texts { display: contents; }
+  .op-plan--filled .op-plan__track::before { display: none; }
+  .op-plan--filled .op-plan__block:nth-child(1) { order: 1; }
+  .op-plan--filled .op-plan__text:nth-child(1) { order: 2; margin-bottom: 12px; }
+  .op-plan--filled .op-plan__block:nth-child(2) { order: 3; }
+  .op-plan--filled .op-plan__text:nth-child(2) { order: 4; }
+  .op-plan--filled .op-plan__mark { order: 5; justify-content: flex-start; padding: 0; }
+  .op-plan--filled .op-plan__legend { order: 6; margin-top: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .op-tab, .op-other, .op-other__arrow { transition: none; }
+}

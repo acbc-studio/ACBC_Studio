@@ -275,30 +275,16 @@
 .op-tab:focus-visible { outline: 2px solid var(--carbon); outline-offset: 3px; }
 
 .op-panel:focus-visible { outline: 2px solid var(--carbon); outline-offset: 6px; border-radius: var(--radius); }
-.op-figure {
-  margin: 0;
-  padding: clamp(20px, 3vw, 40px);
+.op-figure { margin: 0; }
+/* the figures carry their own title and background */
+.op-figure img {
+  width: 100%;
+  border: 1px solid rgb(26 48 49 / .12);
   border-radius: var(--radius);
   background-color: var(--cotton);
 }
-.op-figure__title { margin-bottom: 20px; font-family: var(--font-display); font-size: clamp(22px, 2.2vw, 28px); line-height: 1.25; }
-.op-figure img { width: 100%; border-radius: 8px; }
-.op-figure__placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: 16 / 9;
-  padding: 24px;
-  border: 1px dashed rgb(26 48 49 / .35);
-  border-radius: 8px;
-  font-family: var(--font-label);
-  font-size: 14px;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  text-align: center;
-  color: rgb(26 48 49 / .6);
-}
-.op-figure figcaption { margin-top: 20px; font-size: 16px; line-height: 1.55; }
+.op-figure figcaption { max-width: 760px; margin-top: 20px; font-size: 16px; line-height: 1.55; }
+.op-figure__full { display: inline-block; margin-top: 12px; font-size: 15px; }
 .op-next {
   margin-top: 20px;
   font-family: var(--font-label);

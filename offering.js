@@ -170,3 +170,23 @@
     b.addEventListener('click', function () { show(current + Number(b.getAttribute('data-hub-step')), false); });
   });
 })();
+
+/* =============================================================
+   (Un)Learning module cards: each "What we'll (un)learn and
+   (re)member" button opens its own card.
+   ============================================================= */
+(function () {
+  'use strict';
+
+  document.querySelectorAll('.op-module__toggle').forEach(function (btn) {
+    const panel = document.getElementById(btn.getAttribute('aria-controls'));
+    const text = btn.querySelector('.op-module__toggle-text');
+    const closedLabel = text.textContent;
+    btn.addEventListener('click', function () {
+      const open = btn.getAttribute('aria-expanded') !== 'true';
+      btn.setAttribute('aria-expanded', String(open));
+      panel.hidden = !open;
+      text.textContent = open ? 'Show less' : closedLabel;
+    });
+  });
+})();

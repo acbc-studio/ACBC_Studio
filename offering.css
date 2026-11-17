@@ -928,3 +928,80 @@
 @media (prefers-reduced-motion: reduce) {
   .op-tab, .op-other, .op-other__arrow, .op-hub__tab, .op-hub__nav, .op-hub__dots span { transition: none; }
 }
+
+/* =============================================================
+   (Un)Learning v6: module cards with a fold, the rhythm figure,
+   and "What you keep" beside its label
+   ============================================================= */
+.op-explore__how { margin-top: 16px; font-size: 15px; color: rgb(26 48 49 / .7); }
+.op-explore__how .op-link { white-space: nowrap; }
+.op-areas--modules { align-items: start; }
+.op-module__leave { padding: 16px 18px; border-radius: 12px; background-color: var(--stone); }
+.op-module__leave .label { display: block; margin-bottom: 4px; font-size: 12px; }
+.op-module__leave p { font-size: 16px; line-height: 1.5; }
+.op-module__toggle {
+  display: inline-flex; align-items: center; gap: 12px; align-self: flex-start;
+  margin: 0; padding: 0; border: 0; background: none; cursor: pointer;
+  color: var(--forest-green); font: inherit; font-size: 16px; text-align: left;
+}
+.op-module__icon {
+  display: inline-flex; align-items: center; justify-content: center; flex: none;
+  width: 32px; height: 32px; border: 1.5px solid var(--forest-green); border-radius: 50%;
+  transition: background-color .2s ease;
+}
+.op-module__icon svg { width: 11px; height: 8px; transition: transform .25s ease; }
+.op-module__toggle:hover .op-module__icon,
+.op-module__toggle:focus-visible .op-module__icon { background-color: var(--urban-olive); }
+.op-module__toggle:hover .op-module__toggle-text { text-decoration: underline; text-underline-offset: 3px; }
+.op-module__toggle[aria-expanded="true"] .op-module__icon svg { transform: rotate(180deg); }
+.op-module__more { display: flex; flex-direction: column; gap: 16px; }
+.op-module__more[hidden] { display: none; }
+.op-areas--modules .op-area__line { grid-template-columns: 136px minmax(0, 1fr); }
+.op-areas--modules .op-area__from { margin-top: 0; }
+
+/* the rhythm figure: one dotted line of time, opening → modules → closing */
+.op-rhythm { margin: clamp(32px, 4vw, 48px) 0 0; padding: clamp(24px, 3.5vw, 44px); border-radius: 20px; background-color: var(--stone); }
+.op-rhythm .label { font-size: 12px; }
+.op-rhythm__before { margin-bottom: 12px; }
+.op-rhythm__track {
+  position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
+  gap: clamp(24px, 3vw, 40px); align-items: stretch;
+}
+.op-rhythm__track::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 2px dotted var(--carbon); }
+.op-rhythm__track > * { position: relative; z-index: 1; background-color: var(--cotton); }
+.op-rhythm__card { display: flex; flex-direction: column; gap: 6px; padding: 24px; border: 1px solid var(--beige); border-radius: var(--radius); }
+.op-rhythm__title { font-family: var(--font-display); font-size: clamp(22px, 2.2vw, 26px); line-height: 1.2; }
+.op-rhythm__foot { margin-top: auto; padding-top: 12px; font-size: 15px; line-height: 1.45; }
+.op-rhythm__modules {
+  display: flex; flex-direction: column; gap: 20px; padding: 24px clamp(20px, 2.5vw, 32px);
+  border: 1.5px solid var(--carbon); border-radius: 20px; text-align: left;
+}
+.op-rhythm__modules > .label { align-self: center; text-align: center; }
+.op-rhythm__steps { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin: 0; padding: 0; list-style: none; }
+.op-rhythm__steps::before { content: ""; position: absolute; left: 8px; right: calc(50% - 20px); top: 7px; border-top: 2px dotted var(--carbon); }
+.op-rhythm__steps li { position: relative; display: flex; flex-direction: column; gap: 6px; font-size: 15px; line-height: 1.45; }
+.op-rhythm__steps .op-dot { margin-bottom: 6px; background-color: var(--cotton); }
+.op-rhythm__pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 4px 0 0; padding: 0; list-style: none; }
+.op-rhythm__pills .op-tag { font-size: 11px; }
+.op-rhythm__caption { margin-top: 20px; font-size: 15px; line-height: 1.5; }
+
+.op-keepwrap { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); margin-top: clamp(48px, 6vw, 72px); }
+.op-keepwrap__intro p:not(.label) { margin-top: 8px; color: rgb(26 48 49 / .7); }
+.op-keepwrap .op-keeps { max-width: none; }
+
+@media screen and (max-width: 991px) {
+  .op-rhythm__track { grid-template-columns: 1fr; padding-left: 28px; }
+  .op-rhythm__track::before { top: 0; bottom: 0; left: 7px; right: auto; border-top: 0; border-left: 2px dotted var(--carbon); }
+  .op-rhythm__before { padding-left: 28px; }
+  .op-keepwrap { grid-template-columns: 1fr; }
+}
+@media screen and (max-width: 767px) {
+  .op-areas--modules .op-area__line { grid-template-columns: 1fr; }
+  .op-rhythm__steps { grid-template-columns: 1fr; gap: 18px; }
+  .op-rhythm__steps::before { left: 7px; right: auto; top: 8px; bottom: 8px; border-top: 0; border-left: 2px dotted var(--carbon); }
+  .op-rhythm__steps li { padding-left: 30px; }
+  .op-rhythm__steps .op-dot { position: absolute; left: 0; top: 2px; margin: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .op-module__icon, .op-module__icon svg { transition: none; }
+}

@@ -21,7 +21,7 @@
   <link rel="preload" href="assets/fonts/AesthetNova-Regular.otf" as="font" type="font/otf" crossorigin>
   <link rel="preload" href="assets/fonts/AdelleSans-Regular.otf" as="font" type="font/otf" crossorigin>
   <link rel="stylesheet" href="styles.css?v=15">
-  <link rel="stylesheet" href="offering.css?v=9">
+  <link rel="stylesheet" href="offering.css?v=10">
 </head>
 
 <body class="page-wayfinding">
@@ -108,7 +108,7 @@
           </article>
           <article class="op-pain">
             <h3 class="op-pain__lead">You’re the bridge, and the bridge carries the weight.</h3>
-            <p>Your community partners trust you, so you’re the one who tells them what leadership won’t fund. Leadership trusts you, so you’re the one explaining why residents keep raising housing at a climate meeting. Every week is a quiet negotiation between what people asked for and what your institution can hold.</p>
+            <p>Your community partners trust you, so you’re the one who tells them what leadership won’t fund. Leadership trusts you, so you’re the one explaining why community members keep raising housing at a climate meeting. Every week is a quiet negotiation between what people asked for and what your institution can hold.</p>
           </article>
           <article class="op-pain">
             <h3 class="op-pain__lead">The hard calls come faster than you can think them through.</h3>
@@ -196,7 +196,7 @@
           </div>
           <div class="op-principle">
             <h3 class="op-principle__title">What stays with you</h3>
-            <p>You’re the ones residents see, and the ones who’ll still hold the relationships next year. So you run the sessions, write the plans and make the final calls. That’s on purpose: when I leave, the know-how stays with the people who’ll keep using it.</p>
+            <p>You’re the ones community members see, and the ones who’ll still hold the relationships next year. So you run the sessions, write the plans and make the final calls. That’s on purpose: when I leave, the know-how stays with the people who’ll keep using it.</p>
           </div>
         </div>
       </div>
@@ -210,27 +210,34 @@
           <p class="text-lg">There are four areas I advise on: how you listen, translate, show and decide. Each quarter, your team chooses one to focus on, so we can go deep enough to really change how the work gets done, rather than spreading thin across everything at once. In the second quarter, you can stay with the same area or move to a new one. The other areas aren’t off-limits in the meantime: if a board presentation comes up while you’re focused on Listen, we’ll still prepare for it together.</p>
         </div>
 
-        <!-- main figure: the four areas feed one choice per quarter; carbon and stone only -->
-        <figure class="op-plan" aria-label="Four focus areas. Quarter 1, months 1 to 3: you choose one. Quarter 2, months 4 to 6: the same area, or a new one. From a starting map to a handover.">
-          <div class="op-plan__areas">
-            <p class="label">Four focus areas</p>
-            <ul class="op-plan__chips" role="list">
-              <li>Listen</li><li>Translate</li><li>Show</li><li>Decide</li>
-            </ul>
-          </div>
-          <div class="op-plan__fan" aria-hidden="true"></div>
-          <div class="op-plan__track">
-            <div class="op-plan__mark"><span class="op-dot" aria-hidden="true"></span><span class="label">Starting map</span></div>
-            <div class="op-plan__block">
-              <p class="label">Quarter 1 · Months 1–3</p>
-              <p class="op-plan__slot">Focus 1: you choose one</p>
+        <!-- main figure (F1): two quarter cards, each listing the four areas with the chosen one as a filled bar.
+             Never a filled dot for the chosen area: filled dots mean "with your communities". -->
+        <figure class="op-quarters" aria-label="Two quarters, from a starting map to a handover. Each quarter, your team chooses one of the four focus areas.">
+          <div class="op-quarters__track">
+            <div class="op-quarters__end"><span class="op-dot" aria-hidden="true"></span><span class="label">Starting map</span></div>
+            <div class="op-qcard">
+              <p class="label op-qcard__label">Quarter 1 · Months 1–3</p>
+              <ul class="op-qcard__areas" role="list">
+                <li class="is-chosen">Listen<span class="visually-hidden"> (chosen)</span></li>
+                <li>Translate</li>
+                <li>Show</li>
+                <li>Decide</li>
+              </ul>
+              <p class="op-qcard__foot">Your team chooses one focus area.</p>
             </div>
-            <div class="op-plan__block">
-              <p class="label">Quarter 2 · Months 4–6</p>
-              <p class="op-plan__slot">Focus 2: the same area, or a new one</p>
+            <div class="op-qcard">
+              <p class="label op-qcard__label">Quarter 2 · Months 4–6</p>
+              <ul class="op-qcard__areas" role="list">
+                <li>Listen</li>
+                <li class="is-chosen">Translate<span class="visually-hidden"> (chosen)</span></li>
+                <li>Show</li>
+                <li>Decide</li>
+              </ul>
+              <p class="op-qcard__foot">The same area again, or a new one.</p>
             </div>
-            <div class="op-plan__mark"><span class="op-dot" aria-hidden="true"></span><span class="label">Handover</span></div>
+            <div class="op-quarters__end"><span class="op-dot" aria-hidden="true"></span><span class="label">Handover</span></div>
           </div>
+          <figcaption class="op-quarters__caption">Shown here: Listen, then Translate. Your team chooses its own.</figcaption>
         </figure>
 
         <p class="op-sizing">At the start of each quarter, we size the work to what’s on your desk: one big piece, like a strategic plan, or two or three smaller ones.</p>
@@ -504,7 +511,7 @@
                     <li><strong>Up to three reviews</strong> of a draft, agenda, plan section or figure, with notes that start with the three changes that matter most</li>
                     <li><strong>One studio piece:</strong> a starting point I make for you to adapt, like an activity, a figure or a plan outline</li>
                     <li><strong>Support around key moments:</strong> before a board meeting, a community session or a big decision, we prepare together, then debrief afterward. Most months have one or two.</li>
-                    <li><strong>Something added to your digital hub:</strong> a review question, a template or a tested activity, plus an entry in your Field Notes on what we tried and learned</li>
+                    <li><strong>Something added to your digital hub:</strong> a review question, a template or a tested activity, plus an entry in your Field Notes on what we talked through, decided and tried</li>
                     <li><strong>The first month</strong> opens with a 2-hour kickoff on a shared board, and <strong>the sixth</strong> closes with a handover meeting.</li>
                   </ul>
                 </div>

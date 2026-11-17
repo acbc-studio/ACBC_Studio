@@ -610,7 +610,8 @@
 
 /* filled-in version: no chips; marks and blocks sit on cotton */
 .op-plan--filled .op-plan__track { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 96px; }
-.op-plan--filled .op-plan__track::before { left: 0; }
+/* no connecting line between the blocks or out to the handover */
+.op-plan--filled .op-plan__track::before { display: none; }
 .op-plan--filled .op-plan__mark .op-dot,
 .op-plan--filled .op-plan__mark .label { background-color: var(--cotton); }
 .op-plan__phase { font-family: var(--font-label); font-size: 15px; letter-spacing: .08em; text-transform: uppercase; }
@@ -618,7 +619,8 @@
   position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px;
   margin: 4px 0 0; padding: 0; list-style: none;
 }
-.op-plan__points::before { content: ""; position: absolute; left: 8px; right: 24px; top: 7px; border-top: 2px dotted var(--carbon); }
+/* the line runs from the first dot to the last, no tail */
+.op-plan__points::before { content: ""; position: absolute; left: 8px; right: calc((100% - 24px) / 3 - 8px); top: 7px; border-top: 2px dotted var(--carbon); }
 .op-plan__points li { position: relative; display: flex; flex-direction: column; gap: 10px; font-size: 15px; line-height: 1.35; }
 .op-plan__points .op-dot { background-color: var(--stone); }
 .op-plan__points .op-dot--filled { background-color: var(--carbon); }

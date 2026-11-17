@@ -1,0 +1,364 @@
+/* =============================================================
+   ACBC Studio — about page
+   Built from acbc-about-page.md. Loads after styles.css and reuses
+   its tokens, sections, buttons, header and footer.
+   Breakpoints match styles.css: 991px (tablet) / 767px (phone).
+   ============================================================= */
+
+/* ---------- Shared pieces ---------- */
+
+/* text left, image right; --media-first flips it */
+.about-split {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: clamp(32px, 6vw, 96px);
+  align-items: center;
+}
+.about-split--media-first { grid-template-columns: 2fr 3fr; }
+.about-split--even { grid-template-columns: 1fr 1fr; }
+/* a comfortable reading width for text that runs on its own */
+.about-measure { max-width: 760px; }
+.section--peach { background-color: var(--peach); }
+.about-split--top { align-items: start; }
+.about-split__text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.about-photo {
+  width: 100%;
+  border-radius: var(--radius);
+  object-fit: cover;
+}
+.about-photo--4x5 { aspect-ratio: 4 / 5; }
+.about-photo--3x4 { aspect-ratio: 3 / 4; }
+.about-photo--2x3 { aspect-ratio: 2 / 3; }
+.about-photo--5x4 { aspect-ratio: 5 / 4; object-position: 50% 80%; }
+
+.about-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 32px;
+  border-radius: var(--radius);
+  font-size: 17px;
+}
+.about-card--cotton { background-color: var(--cotton); }
+.about-card--stone  { background-color: var(--stone); }
+.about-card--beige  { background-color: var(--beige); }
+.about-card__title { font-size: 26px; line-height: 1.25; }
+.about-card__title a { text-decoration: none; }
+
+/* =============================================================
+   1. HERO
+   ============================================================= */
+.about-hero__title {
+  margin-bottom: 8px;
+  font-size: clamp(44px, 6vw, 80px);
+  line-height: 1.08;
+}
+/* the illustration sits behind the headshot and shows beside its lower-left corner */
+.about-hero__media { position: relative; isolation: isolate; }
+.about-hero__orbit {
+  position: absolute;
+  z-index: -1;
+  left: -12%;
+  bottom: -12%;
+  width: 46%;
+  pointer-events: none;
+}
+
+/* =============================================================
+   2–3. WHERE IT BEGAN · BETWEEN — seed head as a wide strip,
+   then the pull line in its own Peach band
+   ============================================================= */
+.about-strip {
+  width: 100%;
+  aspect-ratio: 21 / 8;
+  margin-top: clamp(40px, 5vw, 64px);
+  border-radius: var(--radius);
+  object-fit: cover;
+  object-position: 50% 55%;
+}
+
+.about-pull {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  max-width: calc(820px + var(--gutter) * 2);
+  text-align: center;
+}
+.about-pull__line {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.1;
+}
+
+/* =============================================================
+   5. THE CRACK — full-bleed photo with the frosted text box
+   ============================================================= */
+.about-crack {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 780px;
+  padding: clamp(64px, 9vw, 128px) 0;
+  overflow: hidden;
+}
+.about-crack__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 60% 40%;
+}
+.about-crack .container { position: relative; }
+.about-crack__box {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 560px;
+  padding: 48px;
+  border-radius: var(--radius);
+  background-color: rgb(254 249 242 / 0.78);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+/* =============================================================
+   6. WHAT CHANGED ME
+   ============================================================= */
+.about-quote {
+  margin: 12px 0;
+  padding-left: 24px;
+  border-left: 1px solid var(--urban-olive);
+  color: var(--butter);
+  font-family: var(--font-display);
+  font-size: clamp(24px, 2.6vw, 32px);
+  line-height: 1.3;
+}
+.section--forest .label { color: var(--urban-olive); }
+/* the section's own conclusion, set like the old pull quote */
+.about-takeaway {
+  margin: 12px 0;
+  padding-left: 24px;
+  border-left: 1px solid var(--urban-olive);
+  color: var(--butter);
+  font-family: var(--font-display);
+  font-size: clamp(24px, 2.6vw, 32px);
+  line-height: 1.3;
+}
+/* the thinkers named as credit, set apart from the story */
+.about-lineage { font-size: 16px; }
+
+/* =============================================================
+   7. WHAT I'D WANT YOU TO KNOW
+   ============================================================= */
+.about-know {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 24px;
+}
+.about-know__photo {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  border-radius: var(--radius);
+  object-fit: cover;
+}
+.about-know__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.about-card__label { color: var(--forest-green); }
+
+/* =============================================================
+   8. HOW WE CAN WALK THIS TOGETHER
+   ============================================================= */
+.about-phases {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.about-card__icon { width: 96px; height: 96px; margin-bottom: 8px; object-fit: contain; }
+
+
+.about-snowball { max-width: 860px; }
+
+.about-offers {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+/* same as the home page offering cards: the title link stretches over the
+   whole card, which lifts on hover and is outlined for keyboard focus */
+.about-offers .about-card { position: relative; transition: transform .2s ease; }
+.about-offers .about-card:hover { transform: translateY(-4px); }
+.about-offers .about-card__title a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.about-offers .about-card:hover .about-card__title a { text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px; }
+.about-offers .about-card__title a:focus-visible { outline: none; }
+.about-offers .about-card { min-height: 220px; }
+.about-offers__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  align-self: flex-start;
+  margin-top: auto;
+  border: 1px solid var(--carbon);
+  border-radius: 50%;
+  transition: transform .2s ease;
+}
+.about-offers__arrow img { width: 10px; }
+.about-offers .about-card:hover .about-offers__arrow { transform: translateX(4px); }
+.about-offers .about-card:has(a:focus-visible) { outline: 2px solid var(--carbon); outline-offset: 4px; }
+
+/* =============================================================
+   9. VISION
+   ============================================================= */
+.about-vision {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+.about-vision > .text-lg { max-width: 680px; }
+/* doubled class to beat ul[role="list"] { margin: 0 } */
+.about-vision .about-vision__cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  margin: 24px 0;
+  text-align: left;
+}
+.about-vision__card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px 24px;
+  border-radius: var(--radius);
+  background-color: rgb(254 249 242 / 0.55);
+  font-size: 17px;
+}
+.about-vision__close {
+  max-width: 720px;
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3vw, 36px);
+  line-height: 1.25;
+}
+
+/* =============================================================
+   10. WITH GRATITUDE
+   ============================================================= */
+.about-band {
+  width: 100%;
+  aspect-ratio: 21 / 8;
+  margin-bottom: clamp(40px, 5vw, 64px);
+  border-radius: var(--radius);
+  object-fit: cover;
+}
+.about-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 72px);
+  margin-top: 32px;
+}
+.about-columns--three { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 3vw, 48px); }
+
+/* with gratitude as a postscript: label + thin rule, smaller text, less padding */
+.about-ps { padding: clamp(48px, 6vw, 80px) 0; }
+.about-ps__head { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+.about-ps__head span { flex: 1; border-top: 1px solid var(--carbon); }
+.about-ps .about-columns { margin-top: 0; font-size: 16px; line-height: 1.6; }
+
+/* =============================================================
+   Nov 2026 update — callout bar, closing line, studio section
+   ============================================================= */
+/* orange callout bar: ties the story to the offerings (hero callout + offering cards) */
+.about-callout { padding-left: 20px; border-left: 3px solid var(--deep-orange); }
+.about-offers__root { font-size: 16px; line-height: 1.55; }
+.about-offers__root.about-callout { padding-left: 16px; }
+
+/* closing: opening line in display type, between the heading and body sizes */
+.about-invite { font-family: var(--font-display); font-size: clamp(24px, 2.4vw, 30px); line-height: 1.3; }
+
+/* pull band: a short pause, the line fits on one line on desktop */
+.about-pull-band { padding: clamp(48px, 6vw, 88px) 0; }
+.about-pull { max-width: calc(1000px + var(--gutter) * 2); gap: 16px; }
+.about-pull__line { font-size: clamp(30px, 3.6vw, 48px); }
+.about-pull p:not(.about-pull__line) { max-width: 760px; }
+
+/* what changed me: photo stays in view while the text scrolls; quote one size smaller */
+.about-sticky { position: sticky; top: 96px; }
+.section--forest .about-takeaway { font-size: clamp(22px, 2.2vw, 27px); }
+.section--forest .about-lineage { margin-top: 0; padding-top: 0; font-size: var(--text-body); }
+
+/* why a studio: centred column, illustration, roles on a dashed line with olive dots */
+.about-studio { display: flex; flex-direction: column; align-items: center; gap: 20px;
+  max-width: calc(820px + var(--gutter) * 2); text-align: center; }
+.about-studio__art { width: 120px; margin-bottom: 12px; }
+.about-studio .about-studio__roles { position: relative; display: grid; grid-template-columns: repeat(3, 1fr);
+  width: 100%; max-width: 640px; margin: 36px 0 12px; padding-top: 32px; }
+.about-studio__roles::before { content: ""; position: absolute; top: 7px; left: 16.66%; right: 16.66%;
+  border-top: 1px dashed var(--carbon); }
+.about-studio__roles li { position: relative; font-family: var(--font-display);
+  font-size: clamp(26px, 2.6vw, 32px); line-height: 1.2; }
+.about-studio__roles li::before { content: ""; position: absolute; top: -32px; left: 50%; width: 15px; height: 15px;
+  margin-left: -7.5px; border-radius: 50%; background: var(--urban-olive); }
+.about-studio__close { max-width: 620px; font-family: var(--font-display);
+  font-size: clamp(22px, 2.2vw, 26px); line-height: 1.35; }
+
+/* =============================================================
+   ≤ 1199px — narrow desktop
+   ============================================================= */
+@media screen and (max-width: 1199px) {
+  .about-vision .about-vision__cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* =============================================================
+   ≤ 991px — tablet: everything stacks, images after text
+   ============================================================= */
+@media screen and (max-width: 991px) {
+  .about-split,
+  .about-split--media-first { grid-template-columns: 1fr; }
+  .about-split--even { grid-template-columns: 1fr; }
+  .about-split > .about-photo,
+  .about-hero__media { max-width: 480px; }
+  /* keep the image below the text when the photo comes first in the markup */
+  .about-split--media-first > .about-photo { order: 1; }
+
+  .about-hero__orbit { left: -18%; width: 50%; }
+
+  .about-know { grid-template-columns: 1fr; }
+  .about-know__photo { max-width: 480px; height: auto; aspect-ratio: 3 / 4; }
+
+  .about-offers { grid-template-columns: 1fr; max-width: 560px; }
+  .about-offers .about-card { min-height: 0; }
+  .about-columns { grid-template-columns: 1fr; }
+  .about-sticky { position: static; }
+}
+
+/* =============================================================
+   ≤ 767px — phone
+   ============================================================= */
+@media screen and (max-width: 767px) {
+  .about-hero__orbit { left: -12px; bottom: -8%; width: 45%; }
+
+  .about-crack { min-height: 0; }
+  .about-crack__box { padding: 28px 20px; }
+
+  .about-know__grid,
+  .about-phases,
+  .about-vision .about-vision__cards { grid-template-columns: 1fr; }
+  .about-card { padding: 24px; }
+  .about-studio__roles li { font-size: 22px; }
+
+  .about-band,
+  .about-strip { aspect-ratio: 16 / 9; }
+}

@@ -1,16 +1,24 @@
 # ACBC Studio
 
-A static, dependency-free port of **acbc-studio.com**, 
-One page, three files, no build step, no framework,
+A static, dependency-free site for **acbc-studio.com**.
+No build step, no framework. This copy matches the version on Netlify
+(`resplendent-naiad-93265f.netlify.app`).
 
 ```
-index.html      the whole page
-styles.css      design tokens + layout, 4 breakpoints
-script.js       slider + accordion (~120 lines, no libraries)
+index.html      home page
+about.html      About page
+styles.css      design tokens + layout, shared by both pages
+about.css       styles for the About page only
+script.js       slider + accordion (no libraries)
+robots.txt      currently blocks search engines (preview site)
 assets/
   fonts/        3 self-hosted faces
-  images/       19 files
+  images/       site images; about/ holds the About page photos
 ```
+
+> **Before pointing acbc-studio.com here:** remove the
+> `<meta name="robots" content="noindex, nofollow">` line from both HTML files and
+> change `robots.txt` to allow indexing, or search engines will drop the site.
 
 ## Running it
 
@@ -115,12 +123,6 @@ One deliberate difference remains, between **480 and 767px** — see below.
   `display: flow-root`.
 - The process intro column carries 32px of extra padding, which in the original came
   from two zero-height clearfix pseudo-elements each picking up the column gap.
-
-### Known content issue, not fixed
-
-The button in "Ways we work" reads **"Scedule a Call"** (missing `h`). It is spelled
-that way on the live site, so it was carried over verbatim rather than silently
-changed. It is on line 268 of `index.html`.
 
 ## Deploying
 

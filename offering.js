@@ -61,3 +61,45 @@
     });
   });
 })();
+
+/* =============================================================
+   Waitlist form (Netlify Forms). Submits in place and shows the
+   confirmation; if Netlify isn't accepting it, offers email instead.
+   ============================================================= */
+(function () {
+  'use strict';
+
+  const form = document.querySelector('[data-waitlist]');
+  if (!form) return;
+  const status = form.querySelector('.op-form__status');
+  const button = form.querySelector('button[type="submit"]');
+
+  function show(message, isError) {
+    status.hidden = false;
+    status.classList.toggle('is-error', !!isError);
+    status.innerHTML = message;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    button.disabled = true;
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString()
+    }).then(function (res) {
+      if (!res.ok) throw new Error(res.status);
+      form.querySelectorAll('.op-form__row, .op-form__field, .op-form__optional, .op-form__actions')
+        .forEach(function (el) { el.hidden = true; });
+      show('You’re on the list. I’ll let you know when founding-team applications open in summer 2027.');
+      status.focus();
+    }).catch(function () {
+      button.disabled = false;
+      show('Something went wrong, and your details weren’t sent. Please try again, or write to ' +
+        '<a href="mailto:hello@acbc-studio.com?subject=Add%20me%20to%20the%20(Un)Learning%20Series%20list">hello@acbc-studio.com</a> ' +
+        'and I’ll add you myself.', true);
+    });
+  });
+})();

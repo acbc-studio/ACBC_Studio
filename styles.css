@@ -238,8 +238,12 @@ section[id] { scroll-margin-top: 76px; }
 }
 .banner__text { line-height: 1.4; }
 .banner__link { display: none; }
-.banner__form { flex: 0 1 440px; }
-.banner .ghost-embed { margin-left: auto; }
+.banner__inner { padding-block: 10px; }
+.banner__cta {
+  flex: none; font-family: var(--font-label); font-size: 14px; letter-spacing: .1em; text-transform: uppercase;
+  text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px;
+}
+.banner__cta:hover { text-decoration-thickness: 2px; }
 
 .site-header {
   position: sticky;
@@ -793,7 +797,7 @@ section[id] { scroll-margin-top: 76px; }
 
   /* banner collapses to one tappable line that jumps to the signup */
   .banner__text,
-  .banner__form { display: none; }
+  .banner__cta { display: none; }
   .banner__link {
     display: block;
     width: 100%;

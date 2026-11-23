@@ -1082,7 +1082,7 @@ section[id] { scroll-margin-top: 76px; }
 /* Who this is for: the closing lines become body text, left-aligned */
 .who-lost__feel { max-width: 760px; margin: clamp(32px, 4vw, 44px) 0 0; text-align: left; font-style: normal; font-size: 18px; }
 .who-compounds {
-  max-width: 760px; margin: 16px 0 0; text-align: left;
+  max-width: 760px; margin: clamp(32px, 4vw, 44px) 0 0; text-align: left;
   font-family: var(--font-body, inherit); font-size: 18px; line-height: 1.6; color: var(--carbon);
 }
 

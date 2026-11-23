@@ -1,2 +1,5 @@
 # The menu on every page links to /learning-series; the page lives at /unlearning-series
 /learning-series  /unlearning-series  301
+# Work with me moved from /work-with-us (Nov 2026)
+/work-with-us  /work-with-me  301
+/work-with-us.html  /work-with-me  301

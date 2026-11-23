@@ -469,6 +469,26 @@ section[id] { scroll-margin-top: 76px; }
 }
 
 /* =============================================================
+   7. CLOSING — meadow photo with a frosted box
+   ============================================================= */
+.home-closing { position: relative; padding: clamp(64px, 9vw, 120px) 0; overflow: hidden; }
+.home-closing__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; }
+.home-closing .container { position: relative; }
+.home-closing__box {
+  display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 24px 64px; align-items: start;
+  padding: clamp(28px, 4vw, 56px); border-radius: var(--radius);
+  background-color: rgb(254 249 242 / .8); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+}
+.home-closing__body { display: flex; flex-direction: column; gap: 18px; }
+.home-closing__body p { margin: 0; }
+.home-closing__line { padding: 16px 0; border-top: 1px solid var(--forest-green); border-bottom: 1px solid var(--forest-green); font-family: var(--font-display); font-size: clamp(22px, 2.2vw, 28px); line-height: 1.3; color: var(--forest-green); }
+.home-closing__small { font-size: 16px; line-height: 1.6; }
+.home-closing__small a { text-underline-offset: 3px; }
+@media screen and (max-width: 900px) {
+  .home-closing__box { grid-template-columns: 1fr; }
+}
+
+/* =============================================================
    5. PHOENIX COMMUNITIES
    ============================================================= */
 

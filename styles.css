@@ -1042,7 +1042,7 @@ section[id] { scroll-margin-top: 60px; }
    2a. WHY IT KEEPS HAPPENING — forest band, butter callout
    ============================================================= */
 .why-band { position: relative; overflow: hidden; }
-.why-band__lines { position: absolute; right: -240px; top: 50%; width: 600px; max-width: none; transform: translateY(-50%); opacity: .14; pointer-events: none; }
+.why-band__lines { position: absolute; right: -330px; top: -350px; width: 600px; max-width: none; opacity: .14; pointer-events: none; }
 .why-band__inner { position: relative; }
 .why-band__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 32px clamp(40px, 6vw, 96px); align-items: start; }
 .why-band__head { display: flex; flex-direction: column; gap: 16px; }

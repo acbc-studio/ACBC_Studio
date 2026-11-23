@@ -440,6 +440,15 @@ section[id] { scroll-margin-top: 76px; }
   margin: 0 auto 8px;
 }
 .offer-card__title { font-size: 28px; line-height: 1.2; }
+.offer-card__label { margin-bottom: -8px; font-size: 12px; color: var(--forest-green); }
+.offer-card__line { font-family: var(--font-display); font-size: 20px; line-height: 1.35; }
+.offer-card__status {
+  position: absolute; top: 20px; left: 20px; z-index: 1;
+  padding: calc(4px + var(--pill-nudge, 0px)) 12px calc(3px - var(--pill-nudge, 0px));
+  border: 1px solid rgb(26 48 49 / .25); border-radius: 999px; background-color: var(--butter);
+  font-family: var(--font-label); font-size: 12px; line-height: 16px; letter-spacing: .1em; text-transform: uppercase;
+}
+.offer-card__so { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--beige); }
 /* the title links to the offering on the ways we work page; its ::after
    stretches over the card so the whole card is clickable */
 .offer-card { position: relative; transition: transform .2s ease; }
@@ -462,7 +471,7 @@ section[id] { scroll-margin-top: 76px; }
 /* =============================================================
    5. PHOENIX COMMUNITIES
    ============================================================= */
-#phoenix .section-intro { margin-bottom: clamp(48px, 6vw, 72px); }
+
 
 /* Four see-through Cotton circles (55%, so each picks up the gradient behind it) joined by a dashed Carbon line, with a small dot
    midway between each pair. Each capacity draws the segment to the next one. */

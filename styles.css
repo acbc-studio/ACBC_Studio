@@ -89,7 +89,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
 
 .section { padding: clamp(64px, 9vw, 128px) 0; }
 /* keep anchored sections clear of the sticky header */
-section[id] { scroll-margin-top: 76px; }
+section[id] { scroll-margin-top: 60px; }
 .section--cotton   { background-color: var(--cotton); }
 .section--stone    { background-color: var(--stone); }
 .section--beige    { background-color: var(--beige); }
@@ -258,11 +258,11 @@ section[id] { scroll-margin-top: 76px; }
   justify-content: space-between;
   gap: 24px;
   max-width: calc(var(--max-width) + var(--gutter) * 2);
-  height: 76px;
+  height: 60px;
   margin: 0 auto;
   padding: 0 var(--gutter);
 }
-.site-header__logo img { height: 30px; width: auto; }
+.site-header__logo img { height: 26px; width: auto; }
 
 .site-nav { display: flex; gap: 12px; }
 /* hover: a soft Beige pill behind the word, echoing the button shapes */
@@ -801,14 +801,14 @@ section[id] { scroll-margin-top: 76px; }
   .banner__link {
     display: block;
     width: 100%;
-    padding: 8px 0;
+    padding: 0;
     text-align: center;
     text-decoration: none;
     font-size: 14px;
   }
 
-  .site-header__inner { height: 64px; }
-  .site-header__logo img { height: 24px; }
+  .site-header__inner { height: 56px; }
+  .site-header__logo img { height: 22px; }
 
   .nav-toggle {
     display: flex;
@@ -923,7 +923,7 @@ section[id] { scroll-margin-top: 76px; }
 .site-nav__menu.site-nav__menu {
   display: none;
   position: absolute;
-  top: calc(100% + 14px);
+  top: calc(100% + 10px);
   right: 0;
   width: 340px;
   margin: 0;

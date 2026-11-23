@@ -190,3 +190,41 @@
     });
   });
 })();
+
+/* =============================================================
+   Un-Learning page: module folds (each opens on its own) and the
+   "Join the list" panel, opened by its button or any #join link.
+   ============================================================= */
+(function () {
+  'use strict';
+
+  document.querySelectorAll('.un-fold').forEach(function (btn) {
+    const panel = document.getElementById(btn.getAttribute('aria-controls'));
+    const card = btn.closest('.un-module');
+    btn.addEventListener('click', function () {
+      const open = btn.getAttribute('aria-expanded') !== 'true';
+      btn.setAttribute('aria-expanded', String(open));
+      panel.hidden = !open;
+      if (card) card.classList.toggle('is-open', open);
+    });
+  });
+
+  const toggle = document.querySelector('.un-join__toggle');
+  const panel = document.getElementById('join');
+  if (!toggle || !panel) return;
+
+  function openJoin(focus) {
+    toggle.setAttribute('aria-expanded', 'true');
+    panel.hidden = false;
+    if (focus) {
+      const first = panel.querySelector('input:not([type="hidden"]):not([name="bot-field"])');
+      if (first) first.focus({ preventScroll: true });
+      panel.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    }
+  }
+  toggle.addEventListener('click', function () { openJoin(true); });
+  document.querySelectorAll('a[href="#join"]').forEach(function (a) {
+    a.addEventListener('click', function (e) { e.preventDefault(); openJoin(true); });
+  });
+  if (location.hash === '#join') openJoin(false);
+})();

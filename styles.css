@@ -1123,3 +1123,17 @@ section[id] { scroll-margin-top: 60px; }
   .why-rules { grid-template-columns: 1fr; }
   .why-rule { min-height: 0; }
 }
+
+/* Offer cards: rows aligned across the three cards; Best for / What changes as labelled fields */
+.offer-grid { grid-template-rows: auto; }
+.offer-card { display: grid; grid-row: span 5; grid-template-rows: subgrid; row-gap: 12px; padding: 28px; }
+.offer-card__image { max-width: 200px; margin-bottom: 4px; }
+.offer-card__label { margin-bottom: 0; }
+.offer-card__line { font-size: 19px; }
+.offer-card__facts { display: flex; flex-direction: column; gap: 14px; margin: 4px 0 0; padding-top: 16px; border-top: 1px solid var(--beige); align-self: start; }
+.offer-card__facts div { display: flex; flex-direction: column; gap: 4px; }
+.offer-card__facts dt { font-size: 11px; color: var(--forest-green); }
+.offer-card__facts dd { margin: 0; font-size: 16px; line-height: 1.5; }
+@media screen and (max-width: 991px) {
+  .offer-card { grid-row: auto; grid-template-rows: none; }
+}

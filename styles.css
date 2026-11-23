@@ -1031,3 +1031,23 @@ section[id] { scroll-margin-top: 76px; }
   .faq__item::details-content { block-size: auto; content-visibility: visible; }
   .faq__icon { display: none; }
 }
+
+/* =============================================================
+   2a. WHY IT KEEPS HAPPENING — forest band, butter callout
+   ============================================================= */
+.why-band { position: relative; overflow: hidden; }
+.why-band__lines { position: absolute; right: -240px; top: 50%; width: 600px; max-width: none; transform: translateY(-50%); opacity: .14; pointer-events: none; }
+.why-band__inner { position: relative; }
+.why-band__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 32px clamp(40px, 6vw, 96px); align-items: start; }
+.why-band__head { display: flex; flex-direction: column; gap: 16px; }
+.why-band__label { color: var(--urban-olive); }
+.why-band .heading { color: var(--cotton); }
+.why-band__body { font-size: clamp(17px, 1.4vw, 19px); line-height: 1.65; }
+.why-band__callout {
+  max-width: 900px; margin-top: clamp(48px, 6vw, 72px); padding-top: 28px; border-top: 1px solid var(--butter);
+  font-family: var(--font-display); font-size: clamp(28px, 3.2vw, 42px); line-height: 1.25; color: var(--butter);
+}
+@media screen and (max-width: 900px) {
+  .why-band__grid { grid-template-columns: 1fr; }
+  .why-band__lines { display: none; }
+}

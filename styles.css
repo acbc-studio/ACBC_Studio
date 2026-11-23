@@ -1051,3 +1051,55 @@ section[id] { scroll-margin-top: 76px; }
   .why-band__grid { grid-template-columns: 1fr; }
   .why-band__lines { display: none; }
 }
+
+/* =============================================================
+   HOME — one system for every section (Nov 2026 cohesion pass)
+   One 5/7 grid, label + heading on each section, one callout
+   style, everything left-aligned except closing outros.
+   ============================================================= */
+.home-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 32px clamp(40px, 6vw, 96px);
+  align-items: start;
+}
+.home-grid--center { align-items: center; }
+.home-head { margin-bottom: clamp(40px, 5vw, 64px); }
+.home-head__title { display: flex; flex-direction: column; gap: 16px; }
+
+/* the one callout: serif, left-aligned, a short rule above */
+.callout {
+  max-width: 880px; margin: 0;
+  font-family: var(--font-display); font-size: clamp(26px, 2.8vw, 36px); line-height: 1.25; color: var(--forest-green);
+}
+.callout::before { content: ""; display: block; width: 56px; height: 2px; margin-bottom: 20px; background-color: var(--forest-green); }
+.callout--dark { color: var(--cotton); }
+.callout--dark::before { background-color: var(--urban-olive); }
+
+/* Why it keeps happening: cotton callout (brand rule: forest takes cotton + olive) */
+.why-band__callout { margin-top: clamp(48px, 6vw, 72px); padding-top: 0; border-top: 0; color: var(--cotton); }
+
+/* Who this is for: the closing lines become body text, left-aligned */
+.who-lost__feel { max-width: 760px; margin: clamp(32px, 4vw, 44px) 0 0; text-align: left; font-style: normal; font-size: 18px; }
+.who-compounds {
+  max-width: 760px; margin: 16px 0 0; text-align: left;
+  font-family: var(--font-body, inherit); font-size: 18px; line-height: 1.6; color: var(--carbon);
+}
+
+/* Founder note on the grid, with a 4:5 portrait */
+.founder-note__inner { max-width: none; display: grid; }
+.founder-note__media { display: flex; justify-content: center; }
+.founder-note__photo { width: 100%; max-width: 340px; height: auto; aspect-ratio: 4 / 5; border-radius: var(--radius); }
+
+/* Closing on the same grid; the callout replaces the boxed line */
+.home-closing__box { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+.home-closing__line { padding: 0; border: 0; font-size: clamp(22px, 2.2vw, 28px); }
+
+/* Letters: a gradient band, no card */
+.letters { max-width: none; padding: 0; border: 0; border-radius: 0; background: none; }
+
+@media screen and (max-width: 900px) {
+  .home-grid, .home-closing__box { grid-template-columns: 1fr; }
+  .founder-note__photo { max-width: 240px; }
+  .founder-note__media { justify-content: flex-start; }
+}

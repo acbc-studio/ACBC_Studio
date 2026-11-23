@@ -308,7 +308,7 @@ section[id] { scroll-margin-top: 60px; }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(26, 48, 49, .78) 0%, rgba(26, 48, 49, .55) 45%, rgba(26, 48, 49, 0) 80%),
+    linear-gradient(90deg, rgba(26, 48, 49, .84) 0%, rgba(26, 48, 49, .64) 45%, rgba(26, 48, 49, 0) 80%),
     linear-gradient(0deg, rgba(26, 48, 49, .35) 0%, rgba(26, 48, 49, 0) 40%);
 }
 .hero__orbit {
@@ -328,6 +328,8 @@ section[id] { scroll-margin-top: 60px; }
   padding: 96px var(--gutter);
 }
 .hero__content {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   display: flex;
   flex-direction: column;
   gap: 24px;

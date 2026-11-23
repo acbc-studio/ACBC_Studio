@@ -42,10 +42,7 @@
 .sm-review__said { margin-bottom: 12px !important; font-family: var(--font-display); font-size: clamp(24px, 2.4vw, 30px); line-height: 1.3; }
 .sm-review__said s { text-decoration-thickness: 2px; text-decoration-color: rgb(26 48 49 / .7); }
 .sm-review__after { padding-left: 14px; border-left: 1px solid rgb(26 48 49 / .4); font-size: 16px; line-height: 25px; color: rgb(26 48 49 / .6); }
-.sm-callout {
-  margin: 8px 0 !important; padding-top: 20px; border-top: 1px solid var(--forest-green);
-  font-family: var(--font-display); font-size: 26px; line-height: 36px; color: var(--forest-green);
-}
+.sm-callout { margin: 8px 0 !important; font-size: 26px; line-height: 36px; }
 
 /* ---------- 3b. The turn: the shape sits on the right edge ---------- */
 .sm-band__shape { position: absolute; right: -260px; top: 50%; width: 560px; max-width: none; transform: translateY(-50%); opacity: .18; pointer-events: none; }
@@ -178,11 +175,11 @@
   display: flex; flex-direction: column; gap: 14px; margin-top: 16px;
   padding: clamp(24px, 3vw, 32px); border-radius: var(--radius); background-color: var(--forest-green); color: var(--cotton);
 }
-.sm-begin__title { font-size: 26px; line-height: 34px; color: var(--butter); }
+.sm-begin__title { font-size: 26px; line-height: 34px; color: var(--cotton); }
 
 /* ---------- 11. What it won't fix ---------- */
-.sm-wont__but { margin-top: clamp(40px, 5vw, 56px); padding-top: 28px; border-top: 1px solid var(--butter); }
-.sm-wont__statement { margin: 0; padding: 0; border: 0; }
+.sm-wont__but { margin-top: clamp(40px, 5vw, 56px); padding-top: 28px; border-top: 1px solid rgb(254 249 242 / .5); }
+.sm-wont__statement { margin: 0; }
 .sm-wont__label { color: var(--urban-olive); font-size: 13px; }
 .sm-wont__link { display: inline-block; margin-top: 2px; color: var(--urban-olive); font-style: italic; text-underline-offset: 4px; }
 .sm-wont__link:hover { text-decoration-thickness: 2px; }

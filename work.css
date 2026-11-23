@@ -14,8 +14,8 @@
 /* two-column sections: 4fr / 7fr, 80px gap */
 .wm-side {
   display: grid;
-  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
-  gap: 32px 80px;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 32px clamp(40px, 6vw, 96px);
   align-items: start;
 }
 .wm-side--center { align-items: center; }
@@ -74,10 +74,7 @@
 .wm-weight { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 48px; }
 .wm-weight__col { display: flex; flex-direction: column; gap: 16px; padding-top: 20px; border-top: 1px solid rgb(26 48 49 / .3); }
 .wm-weight__title { font-size: 26px; line-height: 34px; }
-.wm-hinge {
-  max-width: 760px; margin: clamp(48px, 6vw, 72px) auto 0; text-align: center;
-  font-family: var(--font-display); font-size: 30px; line-height: 38px; color: var(--forest-green);
-}
+.wm-hinge { margin-top: clamp(48px, 6vw, 72px); }
 
 /* ---------- 5. Another way ---------- */
 .wm-another__art { width: 100%; max-width: 360px; }
@@ -168,7 +165,7 @@
   .wm-hero__media { flex: none; min-height: 420px; }
   .wm-hero__title { font-size: 40px; line-height: 46px; }
   .wm-h2 { font-size: 30px; line-height: 38px; }
-  .wm-turn__lead, .wm-hinge, .wm-ask__line { font-size: 26px; line-height: 34px; }
+  .wm-turn__lead, .wm-ask__line { font-size: 26px; line-height: 34px; }
   .wm-thesis blockquote p { font-size: 32px; line-height: 40px; }
   .wm-door__title { white-space: normal; }
   .wm-another__art { max-width: 280px; }

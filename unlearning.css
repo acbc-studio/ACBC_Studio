@@ -46,7 +46,7 @@
 .un-note__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .un-note .container { position: relative; }
 .un-note__box {
-  display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 6fr); gap: 32px 56px;
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 32px clamp(40px, 6vw, 96px);
   padding: clamp(28px, 4vw, 48px); border-radius: var(--radius);
   background-color: rgb(254 249 242 / .78); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
 }
@@ -124,10 +124,7 @@
 .un-keep strong { font-weight: 700; }
 
 /* ---------- 9. What it won't fix ---------- */
-.un-wont__statement {
-  margin-top: clamp(40px, 5vw, 56px); padding-top: 28px; border-top: 1px solid var(--butter);
-  font-family: var(--font-display); font-size: clamp(26px, 2.8vw, 34px); line-height: 1.3; color: var(--butter);
-}
+.un-wont__statement { margin-top: clamp(40px, 5vw, 56px); }
 .un-wont__fit { margin-top: clamp(40px, 5vw, 56px); padding-top: 28px; border-top: 1px solid rgb(254 249 242 / .5); }
 .un-wont__fit-title { font-size: 26px; line-height: 1.25; color: var(--cotton); }
 .un-wont__list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 40px; margin: 0; padding-left: 1.1em; list-style: disc; font-size: 17px; line-height: 27px; }
@@ -162,7 +159,7 @@
 .un-closing__lines { position: absolute; right: -200px; top: -180px; width: 620px; max-width: none; opacity: .45; pointer-events: none; }
 .un-closing .container { position: relative; }
 .un-closing__box {
-  display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 24px 64px; align-items: start;
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 24px clamp(40px, 6vw, 96px); align-items: start;
   padding: clamp(28px, 4vw, 56px); border-radius: var(--radius);
   background-color: rgb(254 249 242 / .78); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
 }

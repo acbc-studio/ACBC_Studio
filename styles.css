@@ -1109,3 +1109,14 @@ section[id] { scroll-margin-top: 60px; }
   .founder-note__photo { max-width: 240px; }
   .founder-note__media { justify-content: flex-start; }
 }
+
+/* Why it keeps happening: the rule behind each of the four moments */
+.why-band__body { font-family: var(--font-display); font-size: clamp(22px, 2.2vw, 28px); line-height: 1.35; }
+.why-rules { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 28px; margin: clamp(48px, 6vw, 64px) 0 0; padding: 0; list-style: none; }
+.why-rule { display: flex; flex-direction: column; gap: 10px; padding-top: 16px; border-top: 1px solid rgb(191 196 153 / .6); }
+.why-rule__name { font-size: 13px; color: var(--urban-olive); }
+.why-rule p { font-size: 17px; line-height: 1.5; }
+.why-band__close { max-width: 760px; margin-top: clamp(36px, 4vw, 48px); font-size: 18px; line-height: 1.6; }
+@media screen and (max-width: 767px) {
+  .why-rules { grid-template-columns: 1fr; gap: 24px; }
+}

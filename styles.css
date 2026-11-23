@@ -338,13 +338,7 @@ section[id] { scroll-margin-top: 76px; }
   line-height: 1.5;
 }
 .hero__content .btn-row { margin-top: 8px; }
-.hero__who {
-  font-family: var(--font-label);
-  font-size: 17px;
-  font-style: italic;
-  max-width: 520px;
-  color: var(--cotton);
-}
+.hero__eyebrow { margin-bottom: -8px; color: var(--cotton); }
 
 /* =============================================================
    2. WHO THIS IS FOR

@@ -159,7 +159,7 @@ section[id] { scroll-margin-top: 76px; }
 }
 
 /* ---------- Buttons ----------
-   primary   = Carbon pill + round Carbon arrow (work with us)
+   primary   = Carbon pill + round Carbon arrow (work with me)
    secondary = Carbon outline pill
    newsletter buttons are Peach and rendered by the Ghost embed */
 .btn {
@@ -890,7 +890,7 @@ section[id] { scroll-margin-top: 76px; }
   .founder-note__photo { width: 128px; height: 128px; }
 }
 
-/* ---------- Header · "Work with us" dropdown ----------
+/* ---------- Header · "Work with me" dropdown ----------
    The name links to the hub; the chevron opens the three offerings
    (click, tap or keyboard, never hover alone). */
 .site-nav__group { position: relative; display: flex; align-items: center; }

@@ -98,7 +98,7 @@
     }).catch(function () {
       button.disabled = false;
       show('Something went wrong, and your details weren’t sent. Please try again, or write to ' +
-        '<a href="mailto:hello@acbc-studio.com?subject=Add%20me%20to%20the%20(Un)Learning%20Series%20list">hello@acbc-studio.com</a> ' +
+        '<a href="mailto:hello@acbc-studio.com?subject=Add%20me%20to%20the%20Un-Learning%20Series%20list">hello@acbc-studio.com</a> ' +
         'and I’ll add you myself.', true);
     });
   });
@@ -172,7 +172,7 @@
 })();
 
 /* =============================================================
-   (Un)Learning module cards: each "What we'll (un)learn and
+   Un-Learning module cards: each "What we'll un-learn and
    (re)member" button opens its own card.
    ============================================================= */
 (function () {

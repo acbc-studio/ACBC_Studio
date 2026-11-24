@@ -1,0 +1,189 @@
+/* =============================================================
+   ACBC Studio — Work with me (/work-with-me)
+   Builds on styles.css (tokens, container, sections, buttons, label).
+   Prefix: wm-
+   ============================================================= */
+
+/* the forest footer, as on the offering pages */
+.site-footer--forest { background-color: var(--forest-green); border-top: 0; color: var(--cotton); }
+.site-footer--forest .site-footer__social a { border-color: var(--cotton); }
+.site-footer--forest .site-footer__legal { border-top-color: rgb(254 249 242 / .2); }
+
+:where(.page-work) p { margin: 0; }
+
+/* two-column sections: 4fr / 7fr, 80px gap */
+.wm-side {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 32px clamp(40px, 6vw, 96px);
+  align-items: start;
+}
+.wm-side--center { align-items: center; }
+.wm-stack { display: flex; flex-direction: column; gap: 20px; }
+.wm-h2 { font-size: 40px; line-height: 48px; }
+.section--forest .wm-h2 { color: var(--cotton); }
+
+/* ---------- 1. Hero: split, the photo bleeds to the right edge ---------- */
+.wm-hero { display: flex; flex-wrap: wrap; align-items: stretch; background-color: var(--stone); }
+.wm-hero__text {
+  flex: 1 1 560px; min-width: 0; display: flex; align-items: center;
+  padding: 80px 64px 80px max(var(--gutter), calc(50% - 600px));
+}
+.wm-hero__inner { display: flex; flex-direction: column; gap: 22px; max-width: 640px; }
+.wm-hero__title { font-size: 56px; line-height: 62px; }
+.wm-hero__actions { padding-top: 8px; }
+.wm-hero__for { font-size: 16px; line-height: 25px; font-style: italic; }
+.wm-hero__media { position: relative; flex: 1 1 460px; min-height: 780px; overflow: hidden; background-color: var(--carbon); }
+.wm-hero__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 52% 70%; }
+.wm-hero__lines {
+  position: absolute; left: -40px; top: 50%; width: 760px; max-width: none;
+  transform: translateY(-50%); opacity: .6; pointer-events: none;
+}
+
+/* ---------- 2. The turn and the three doors ---------- */
+.wm-turn.section { padding: 72px 0 64px; }
+.wm-turn__intro { display: flex; flex-direction: column; gap: 14px; max-width: 760px; margin: 0 auto 48px; text-align: center; }
+.wm-turn__lead { font-family: var(--font-display); font-size: 30px; line-height: 38px; color: var(--forest-green); }
+.wm-doors { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.wm-door {
+  display: flex; align-items: center; gap: 12px; min-width: 0;
+  padding: 14px 12px 14px 14px; border: 1px solid var(--beige); border-radius: var(--radius);
+  background-color: var(--stone); color: var(--carbon); text-decoration: none;
+  transition: border-color .2s ease;
+}
+.wm-door:hover { border-color: var(--carbon); }
+.wm-door__art { flex: none; width: 52px; height: 48px; object-fit: contain; }
+.wm-door__text { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+.wm-door__label { font-size: 12px; line-height: 16px; color: var(--forest-green); }
+.wm-door__title { font-family: var(--font-display); font-size: 21px; line-height: 28px; white-space: nowrap; }
+.wm-door__arrow {
+  flex: none; display: flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; border-radius: 50%; background-color: var(--carbon);
+  transition: transform .2s ease;
+}
+.wm-door__arrow img { width: 10px; }
+.wm-door:hover .wm-door__arrow { transform: translateX(4px); }
+
+/* ---------- 3. The moments ---------- */
+.wm-moments { display: flex; flex-direction: column; }
+.wm-moment { display: flex; flex-direction: column; gap: 10px; padding: 24px 0; border-top: 1px solid var(--carbon); }
+.wm-moment:first-child { padding-top: 0; border-top: 0; }
+.wm-moment__feel { font-family: var(--font-display); font-size: 22px; line-height: 30px; color: var(--forest-green); }
+
+/* ---------- 4. The weight ---------- */
+.wm-weight { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 48px; }
+.wm-weight__col { display: flex; flex-direction: column; gap: 16px; padding-top: 20px; border-top: 1px solid rgb(26 48 49 / .3); }
+.wm-weight__title { font-size: 26px; line-height: 34px; }
+.wm-hinge { margin-top: clamp(48px, 6vw, 72px); }
+
+/* ---------- 5. Another way ---------- */
+.wm-another__art { width: 100%; max-width: 360px; }
+
+/* ---------- 6. Offers ---------- */
+.wm-offers__head { margin-bottom: 48px; }
+.wm-offers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: stretch; }
+.wm-offer {
+  position: relative; display: flex; flex-direction: column; gap: 14px; min-width: 0;
+  padding: 28px; border: 1px solid var(--beige); border-radius: var(--radius); background-color: var(--stone);
+  scroll-margin-top: 96px;
+}
+.wm-offer__status {
+  position: absolute; top: 20px; left: 20px; z-index: 1;
+  padding: calc(4px + var(--pill-nudge, 0px)) 12px calc(3px - var(--pill-nudge, 0px));
+  border: 1px solid rgb(26 48 49 / .25); border-radius: 999px; background-color: var(--butter);
+  font-size: 12px; line-height: 16px;
+}
+.wm-offer__art { width: 100%; max-width: 260px; height: 150px; margin: 0 auto 4px; object-fit: contain; }
+.wm-offer__title { font-size: 24px; line-height: 30px; }
+.wm-offer__desc { font-size: 16px; line-height: 26px; }
+/* only Regular is licensed, so the synthesized bold gets a hairline stroke to read as bold */
+.wm-offer__desc strong { font-weight: 700; -webkit-text-stroke: .3px currentColor; }
+.wm-offer__foot {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 16px;
+  margin-top: auto; padding-top: 18px; border-top: 1px solid var(--beige);
+}
+.wm-offer__price { font-family: var(--font-label); font-size: 16px; line-height: 22px; }
+
+/* ---------- 7. Why me ---------- */
+.wm-why__photo { width: 100%; max-width: 340px; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius); }
+.wm-why__lead { font-family: var(--font-display); font-size: 26px; line-height: 38px; }
+.wm-why__details {
+  display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 3fr); gap: 24px 32px;
+  padding-top: 20px; border-top: 1px solid rgb(26 48 49 / .3);
+  font-size: 16px; line-height: 26px;
+}
+
+/* ---------- 8. Thesis ---------- */
+.wm-thesis__inner { display: flex; flex-direction: column; align-items: center; gap: 24px; max-width: 900px; margin: 0 auto; text-align: center; }
+.wm-thesis__art { width: 96px; }
+.wm-thesis blockquote { margin: 0; }
+.wm-thesis blockquote p { font-family: var(--font-display); font-size: 44px; line-height: 54px; }
+
+/* ---------- 9. Values: paired list ---------- */
+.wm-values { width: 100%; border-collapse: collapse; font-size: 16px; line-height: 26px; }
+.wm-values th { padding: 0 0 12px; border-bottom: 1px solid var(--carbon); font-size: 12px; font-weight: 400; text-align: left; }
+.wm-values td { width: 50%; padding: 18px 0; border-bottom: 1px solid rgb(26 48 49 / .35); vertical-align: top; }
+.wm-values th:first-child, .wm-values td:first-child { padding-right: 32px; }
+.wm-values tr:last-child td { border-bottom: 0; }
+
+/* ---------- 10. Our part ---------- */
+.wm-three { display: flex; flex-direction: column; gap: 10px; max-width: 360px; margin: 16px 0 0; }
+.wm-three__rows { display: flex; flex-direction: column; gap: 10px; }
+.wm-three__row {
+  display: flex; align-items: baseline; gap: 12px;
+  padding: 12px 18px; border: 1px solid rgb(191 196 153 / .8); border-radius: 12px;
+  font-size: 15px; line-height: 22px;
+}
+.wm-three__row--on { border-color: var(--urban-olive); background-color: var(--urban-olive); color: var(--carbon); }
+.wm-three__word { font-family: var(--font-display); font-size: 22px; line-height: 28px; }
+.wm-three figcaption { font-size: 14px; font-style: italic; color: rgb(254 249 242 / .75); }
+.wm-part__body { gap: 16px; font-size: 17px; line-height: 28px; }
+
+/* ---------- 11. Invitation ---------- */
+.wm-invite { position: relative; overflow: hidden; }
+.wm-invite__lines { position: absolute; right: -220px; top: -180px; width: 620px; max-width: none; opacity: .35; pointer-events: none; }
+.wm-invite__inner { position: relative; display: flex; flex-direction: column; gap: 56px; }
+.wm-invite__body { gap: 22px; max-width: 680px; }
+.wm-invite__body .text-lg { font-size: 21px; line-height: 33px; }
+.wm-ask {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px 48px; align-items: center;
+  padding: 36px 40px; border: 1px solid rgb(254 249 242 / .85); border-radius: var(--radius);
+  background-color: rgb(254 249 242 / .32);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+}
+.wm-ask__line { max-width: 640px; font-family: var(--font-display); font-size: 30px; line-height: 38px; }
+.wm-ask__actions { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+.wm-ask__email { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.wm-ask__note { max-width: 300px; font-size: 14px; line-height: 21px; }
+
+/* ---------- below 900px: everything stacks ---------- */
+@media screen and (max-width: 900px) {
+  .wm-side, .wm-weight, .wm-why__details, .wm-ask { grid-template-columns: 1fr; }
+  .wm-doors, .wm-offers { grid-template-columns: 1fr; }
+  .wm-hero { flex-direction: column; }
+  .wm-hero__text { flex: none; padding: 56px 20px 48px; }
+  .wm-hero__media { flex: none; min-height: 420px; }
+  .wm-hero__title { font-size: 40px; line-height: 46px; }
+  .wm-h2 { font-size: 30px; line-height: 38px; }
+  .wm-turn__lead, .wm-ask__line { font-size: 26px; line-height: 34px; }
+  .wm-thesis blockquote p { font-size: 32px; line-height: 40px; }
+  .wm-door__title { white-space: normal; }
+  .wm-another__art { max-width: 280px; }
+  .wm-why__photo { max-width: 300px; }
+  .wm-ask { padding: 28px 24px; }
+  .wm-invite__lines { right: -320px; }
+}
+@media screen and (max-width: 767px) {
+  .wm-hero__media { min-height: 340px; }
+  .wm-values thead { display: none; }
+  .wm-values tr { display: block; padding: 16px 0; border-bottom: 1px solid rgb(26 48 49 / .35); }
+  .wm-values tr:last-child { border-bottom: 0; }
+  .wm-values td { display: block; width: auto; padding: 0; border: 0; }
+  .wm-values td:first-child { padding: 0 0 8px; }
+  .wm-values td::before { display: block; margin-bottom: 2px; font-family: var(--font-label); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+  .wm-values td:first-child::before { content: "You’ll feel at home here if"; }
+  .wm-values td:last-child::before { content: "So I won’t"; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wm-door, .wm-door__arrow { transition: none; }
+}

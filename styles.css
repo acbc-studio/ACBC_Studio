@@ -89,7 +89,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
 
 .section { padding: clamp(64px, 9vw, 128px) 0; }
 /* keep anchored sections clear of the sticky header */
-section[id] { scroll-margin-top: 76px; }
+section[id] { scroll-margin-top: 60px; }
 .section--cotton   { background-color: var(--cotton); }
 .section--stone    { background-color: var(--stone); }
 .section--beige    { background-color: var(--beige); }
@@ -159,7 +159,7 @@ section[id] { scroll-margin-top: 76px; }
 }
 
 /* ---------- Buttons ----------
-   primary   = Carbon pill + round Carbon arrow (work with us)
+   primary   = Carbon pill + round Carbon arrow (work with me)
    secondary = Carbon outline pill
    newsletter buttons are Peach and rendered by the Ghost embed */
 .btn {
@@ -238,8 +238,12 @@ section[id] { scroll-margin-top: 76px; }
 }
 .banner__text { line-height: 1.4; }
 .banner__link { display: none; }
-.banner__form { flex: 0 1 440px; }
-.banner .ghost-embed { margin-left: auto; }
+.banner__inner { padding-block: 10px; }
+.banner__cta {
+  flex: none; font-family: var(--font-label); font-size: 14px; letter-spacing: .1em; text-transform: uppercase;
+  text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px;
+}
+.banner__cta:hover { text-decoration-thickness: 2px; }
 
 .site-header {
   position: sticky;
@@ -254,11 +258,11 @@ section[id] { scroll-margin-top: 76px; }
   justify-content: space-between;
   gap: 24px;
   max-width: calc(var(--max-width) + var(--gutter) * 2);
-  height: 76px;
+  height: 60px;
   margin: 0 auto;
   padding: 0 var(--gutter);
 }
-.site-header__logo img { height: 30px; width: auto; }
+.site-header__logo img { height: 26px; width: auto; }
 
 .site-nav { display: flex; gap: 12px; }
 /* hover: a soft Beige pill behind the word, echoing the button shapes */
@@ -304,7 +308,7 @@ section[id] { scroll-margin-top: 76px; }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(26, 48, 49, .78) 0%, rgba(26, 48, 49, .55) 45%, rgba(26, 48, 49, 0) 80%),
+    linear-gradient(90deg, rgba(26, 48, 49, .84) 0%, rgba(26, 48, 49, .64) 45%, rgba(26, 48, 49, 0) 80%),
     linear-gradient(0deg, rgba(26, 48, 49, .35) 0%, rgba(26, 48, 49, 0) 40%);
 }
 .hero__orbit {
@@ -324,6 +328,8 @@ section[id] { scroll-margin-top: 76px; }
   padding: 96px var(--gutter);
 }
 .hero__content {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -334,23 +340,44 @@ section[id] { scroll-margin-top: 76px; }
   line-height: 1.08;
 }
 .hero__lead {
-  font-size: clamp(19px, 1.7vw, 23px);
+  font-size: clamp(18px, 1.45vw, 21px);
   line-height: 1.5;
 }
 .hero__content .btn-row { margin-top: 8px; }
-.hero__who {
-  font-family: var(--font-label);
-  font-size: 17px;
-  font-style: italic;
-  max-width: 520px;
-  color: var(--cotton);
-}
+.hero__eyebrow { margin-bottom: -8px; color: var(--cotton); }
 
 /* =============================================================
    2. WHO THIS IS FOR
    ============================================================= */
 .who__illustration { width: 100%; max-width: 400px; margin: 0 auto; }
 #who .btn { margin-top: 8px; }
+
+/* at every step, something gets lost: the line thins and breaks as it goes */
+.who-lost { margin-top: clamp(56px, 7vw, 96px); padding-top: clamp(40px, 5vw, 56px); border-top: 1px solid rgb(26 48 49 / .25); }
+.who-lost__lead { font-family: var(--font-display); font-size: clamp(28px, 3vw, 38px); line-height: 1.2; margin-bottom: clamp(32px, 4vw, 48px); }
+.who-steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 28px; margin: 0; padding: 0; list-style: none; }
+.who-step { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.who-step__line { position: relative; display: block; height: 12px; margin-right: -28px; }
+.who-step__line::before { content: ""; position: absolute; left: 0; top: 50%; width: 12px; height: 12px; border-radius: 50%; background-color: var(--forest-green); transform: translateY(-50%); }
+.who-step__line::after { content: ""; position: absolute; left: 18px; right: 6px; top: 50%; border-top: 2px solid var(--forest-green); }
+.who-step:nth-child(4) .who-step__line::after { right: 40%; }
+.who-step__name { margin-top: 8px; font-size: 13px; color: var(--forest-green); }
+.who-step p { font-size: 17px; line-height: 1.55; }
+.who-lost__feel { max-width: 760px; margin: clamp(36px, 4vw, 48px) auto 0; text-align: center; font-size: 18px; line-height: 1.6; font-style: italic; }
+.who-compounds {
+  max-width: 860px; margin: clamp(48px, 6vw, 72px) auto 0; text-align: center;
+  font-family: var(--font-display); font-size: clamp(24px, 2.6vw, 32px); line-height: 1.35; color: var(--forest-green);
+}
+@media screen and (max-width: 767px) {
+  .who-steps { grid-template-columns: 1fr; gap: 0; }
+  .who-step { display: grid; grid-template-columns: 12px minmax(0, 1fr); column-gap: 18px; padding-bottom: 28px; position: relative; }
+  .who-step__line { grid-row: 1 / span 2; height: auto; margin: 0; }
+  .who-step__line::before { top: 14px; }
+  .who-step__line::after { left: 5px; right: auto; top: 30px; bottom: -14px; border-top: 0 !important; border-left: 2px solid var(--forest-green); }
+  .who-step:nth-child(4) .who-step__line::after { bottom: 20%; }
+  .who-step__name { margin-top: 8px; }
+  .who-lost__feel, .who-compounds { text-align: left; }
+}
 
 /* =============================================================
    3. EVERYDAY JUSTICE
@@ -412,6 +439,15 @@ section[id] { scroll-margin-top: 76px; }
   margin: 0 auto 8px;
 }
 .offer-card__title { font-size: 28px; line-height: 1.2; }
+.offer-card__label { margin-bottom: -8px; font-size: 12px; color: var(--forest-green); }
+.offer-card__line { font-family: var(--font-display); font-size: 20px; line-height: 1.35; }
+.offer-card__status {
+  position: absolute; top: 20px; left: 20px; z-index: 1;
+  padding: calc(4px + var(--pill-nudge, 0px)) 12px calc(3px - var(--pill-nudge, 0px));
+  border: 1px solid rgb(26 48 49 / .25); border-radius: 999px; background-color: var(--butter);
+  font-family: var(--font-label); font-size: 12px; line-height: 16px; letter-spacing: .1em; text-transform: uppercase;
+}
+.offer-card__so { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--beige); }
 /* the title links to the offering on the ways we work page; its ::after
    stretches over the card so the whole card is clickable */
 .offer-card { position: relative; transition: transform .2s ease; }
@@ -432,9 +468,29 @@ section[id] { scroll-margin-top: 76px; }
 }
 
 /* =============================================================
+   7. CLOSING — meadow photo with a frosted box
+   ============================================================= */
+.home-closing { position: relative; padding: clamp(64px, 9vw, 120px) 0; overflow: hidden; }
+.home-closing__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; }
+.home-closing .container { position: relative; }
+.home-closing__box {
+  display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 24px 64px; align-items: start;
+  padding: clamp(28px, 4vw, 56px); border-radius: var(--radius);
+  background-color: rgb(254 249 242 / .8); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+}
+.home-closing__body { display: flex; flex-direction: column; gap: 18px; }
+.home-closing__body p { margin: 0; }
+.home-closing__line { padding: 16px 0; border-top: 1px solid var(--forest-green); border-bottom: 1px solid var(--forest-green); font-family: var(--font-display); font-size: clamp(22px, 2.2vw, 28px); line-height: 1.3; color: var(--forest-green); }
+.home-closing__small { font-size: 16px; line-height: 1.6; }
+.home-closing__small a { text-underline-offset: 3px; }
+@media screen and (max-width: 900px) {
+  .home-closing__box { grid-template-columns: 1fr; }
+}
+
+/* =============================================================
    5. PHOENIX COMMUNITIES
    ============================================================= */
-#phoenix .section-intro { margin-bottom: clamp(48px, 6vw, 72px); }
+
 
 /* Four see-through Cotton circles (55%, so each picks up the gradient behind it) joined by a dashed Carbon line, with a small dot
    midway between each pair. Each capacity draws the segment to the next one. */
@@ -736,18 +792,18 @@ section[id] { scroll-margin-top: 76px; }
 
   /* banner collapses to one tappable line that jumps to the signup */
   .banner__text,
-  .banner__form { display: none; }
+  .banner__cta { display: none; }
   .banner__link {
     display: block;
     width: 100%;
-    padding: 8px 0;
+    padding: 0;
     text-align: center;
     text-decoration: none;
     font-size: 14px;
   }
 
-  .site-header__inner { height: 64px; }
-  .site-header__logo img { height: 24px; }
+  .site-header__inner { height: 56px; }
+  .site-header__logo img { height: 22px; }
 
   .nav-toggle {
     display: flex;
@@ -833,7 +889,7 @@ section[id] { scroll-margin-top: 76px; }
   .founder-note__photo { width: 128px; height: 128px; }
 }
 
-/* ---------- Header · "Work with us" dropdown ----------
+/* ---------- Header · "Work with me" dropdown ----------
    The name links to the hub; the chevron opens the three offerings
    (click, tap or keyboard, never hover alone). */
 .site-nav__group { position: relative; display: flex; align-items: center; }
@@ -862,7 +918,7 @@ section[id] { scroll-margin-top: 76px; }
 .site-nav__menu.site-nav__menu {
   display: none;
   position: absolute;
-  top: calc(100% + 14px);
+  top: calc(100% + 10px);
   right: 0;
   width: 340px;
   margin: 0;
@@ -973,4 +1029,104 @@ section[id] { scroll-margin-top: 76px; }
 @media print {
   .faq__item::details-content { block-size: auto; content-visibility: visible; }
   .faq__icon { display: none; }
+}
+
+/* =============================================================
+   2a. WHY IT KEEPS HAPPENING — forest band, butter callout
+   ============================================================= */
+.why-band { position: relative; overflow: hidden; }
+.why-band__lines { position: absolute; right: -330px; top: -350px; width: 600px; max-width: none; opacity: .14; pointer-events: none; }
+.why-band__inner { position: relative; }
+.why-band__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 32px clamp(40px, 6vw, 96px); align-items: start; }
+.why-band__head { display: flex; flex-direction: column; gap: 16px; max-width: 860px; }
+.why-band__label { color: var(--urban-olive); }
+.why-band .heading { color: var(--cotton); }
+.why-band__body { font-size: clamp(17px, 1.4vw, 19px); line-height: 1.65; }
+.why-band__callout {
+  max-width: 900px; margin-top: clamp(48px, 6vw, 72px); padding-top: 28px; border-top: 1px solid var(--butter);
+  font-family: var(--font-display); font-size: clamp(28px, 3.2vw, 42px); line-height: 1.25; color: var(--butter);
+}
+@media screen and (max-width: 900px) {
+  .why-band__grid { grid-template-columns: 1fr; }
+  .why-band__lines { display: none; }
+}
+
+/* =============================================================
+   HOME — one system for every section (Nov 2026 cohesion pass)
+   One 5/7 grid, label + heading on each section, one callout
+   style, everything left-aligned except closing outros.
+   ============================================================= */
+.home-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 32px clamp(40px, 6vw, 96px);
+  align-items: start;
+}
+.home-grid--center { align-items: center; }
+.home-head { margin-bottom: clamp(40px, 5vw, 64px); }
+.home-head__title { display: flex; flex-direction: column; gap: 16px; }
+
+/* the one callout: serif, left-aligned, a short rule above */
+.callout {
+  max-width: 880px; margin: 0;
+  font-family: var(--font-display); font-size: clamp(26px, 2.8vw, 36px); line-height: 1.25; color: var(--forest-green);
+}
+.callout::before { content: ""; display: block; width: 56px; height: 2px; margin-bottom: 20px; background-color: var(--forest-green); }
+.callout--dark { color: var(--cotton); }
+.callout--dark::before { background-color: var(--urban-olive); }
+
+/* Why it keeps happening: cotton callout (brand rule: forest takes cotton + olive) */
+.why-band__callout { margin-top: clamp(48px, 6vw, 72px); padding-top: 0; border-top: 0; color: var(--cotton); }
+
+/* Who this is for: the closing lines become body text, left-aligned */
+.who-lost__feel { max-width: 760px; margin: clamp(32px, 4vw, 44px) 0 0; text-align: left; font-style: normal; font-size: 18px; }
+.who-compounds {
+  max-width: 760px; margin: clamp(32px, 4vw, 44px) 0 0; text-align: left;
+  font-family: var(--font-body, inherit); font-size: 18px; line-height: 1.6; color: var(--carbon);
+}
+
+/* Founder note on the grid, with a 4:5 portrait */
+.founder-note__inner { max-width: none; display: grid; }
+.founder-note__media { display: flex; justify-content: center; }
+.founder-note__photo { width: 100%; max-width: 340px; height: auto; aspect-ratio: 4 / 5; border-radius: var(--radius); }
+
+/* Closing on the same grid; the callout replaces the boxed line */
+.home-closing__box { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+.home-closing__line { padding: 0; border: 0; font-size: clamp(22px, 2.2vw, 28px); }
+
+/* Letters: a gradient band, no card */
+.letters { max-width: none; padding: 0; border: 0; border-radius: 0; background: none; }
+
+@media screen and (max-width: 900px) {
+  .home-grid, .home-closing__box { grid-template-columns: 1fr; }
+  .founder-note__photo { max-width: 240px; }
+  .founder-note__media { justify-content: flex-start; }
+}
+
+/* Why it keeps happening: four unwritten rules, dashed (there, but not visible) */
+.why-band__body { font-family: var(--font-display); font-size: clamp(22px, 2.2vw, 28px); line-height: 1.35; }
+.why-rules { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: clamp(36px, 4vw, 48px) 0 0; padding: 0; list-style: none; }
+.why-rule {
+  display: flex; align-items: center; min-height: 112px; padding: 24px 28px;
+  border: 1.5px dashed rgb(191 196 153 / .7); border-radius: var(--radius);
+}
+.why-rule p { font-family: var(--font-display); font-size: clamp(20px, 1.8vw, 24px); line-height: 1.35; }
+.why-band__close { max-width: 760px; margin-top: clamp(36px, 4vw, 48px); font-size: 18px; line-height: 1.6; }
+@media screen and (max-width: 767px) {
+  .why-rules { grid-template-columns: 1fr; }
+  .why-rule { min-height: 0; }
+}
+
+/* Offer cards: rows aligned across the three cards; Best for / What changes as labelled fields */
+.offer-grid { grid-template-rows: auto; }
+.offer-card { display: grid; grid-row: span 5; grid-template-rows: subgrid; row-gap: 12px; padding: 28px; }
+.offer-card__image { max-width: 200px; margin-bottom: 4px; }
+.offer-card__label { margin-bottom: 0; }
+.offer-card__line { font-size: 19px; }
+.offer-card__facts { display: flex; flex-direction: column; gap: 14px; margin: 4px 0 0; padding-top: 16px; border-top: 1px solid var(--beige); align-self: start; }
+.offer-card__facts div { display: flex; flex-direction: column; gap: 4px; }
+.offer-card__facts dt { font-size: 11px; color: var(--forest-green); }
+.offer-card__facts dd { margin: 0; font-size: 16px; line-height: 1.5; }
+@media screen and (max-width: 991px) {
+  .offer-card { grid-row: auto; grid-template-rows: none; }
 }

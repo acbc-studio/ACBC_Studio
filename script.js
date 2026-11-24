@@ -34,7 +34,7 @@
     });
   }
 
-  /* ---- "Work with us" dropdown ----------------------------------
+  /* ---- "Work with me" dropdown ----------------------------------
      The chevron opens and closes the offerings; Esc or a click
      outside closes them; arrow keys move between the items. */
   const chevron = document.querySelector('.site-nav__chevron');
